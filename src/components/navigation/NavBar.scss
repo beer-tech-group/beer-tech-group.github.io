@@ -1,0 +1,17 @@
+@tailwind base;
+
+@layer base {
+  .main-nav {
+    &__menu-item {
+      @apply font-oswald;
+      @apply uppercase;
+      @apply text-2xl;
+      @apply tracking-tighter;
+
+      &--active {
+        @apply underline;
+        color: red;
+      }
+    }
+  }
+}

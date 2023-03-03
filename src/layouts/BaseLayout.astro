@@ -1,0 +1,37 @@
+---
+import NavBar from "../components/navigation/NavBar.astro";
+import "./BaseLayout.scss";
+
+type Props = {
+  pageTitle: string;
+};
+
+const { pageTitle } = Astro.props;
+---
+
+<html lang="it">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{`Beer Developer Group - ${pageTitle}`}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;1,400;1,700&family=Oswald:wght@500&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="border-box prose">
+    <section class="px-4">
+      <NavBar />
+      <section class="mt-10">
+        <h1>{pageTitle}</h1>
+        <slot />
+      </section>
+    </section>
+  </body>
+</html>
