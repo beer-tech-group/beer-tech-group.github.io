@@ -30,7 +30,7 @@ module.exports = {
 					},
 					h3: {
 						fontFamily: 'Oswald'
-					}
+					},
 				}
 			}
 		}

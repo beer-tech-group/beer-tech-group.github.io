@@ -1,5 +1,6 @@
 ---
-import NavBar from "../components/navigation/NavBar.astro";
+import NavBar from "@components/navigation/NavBar.astro";
+import BaseFooter from "./BaseFooter.astro";
 import "./BaseLayout.scss";
 
 type Props = {
@@ -28,10 +29,11 @@ const { pageTitle } = Astro.props;
   <body class="border-box prose">
     <section class="px-4">
       <NavBar />
-      <section class="mt-10">
+      <section class="mt-[70px]">
         <h1>{pageTitle}</h1>
         <slot />
       </section>
+      <BaseFooter />
     </section>
   </body>
 </html>
