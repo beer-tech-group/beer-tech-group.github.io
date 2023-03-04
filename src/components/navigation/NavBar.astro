@@ -1,31 +1,7 @@
 ---
-const pathname: string = new URL(Astro.request.url).pathname;
-const currentPath: string = pathname.slice(1); // remove the first "/"
-import "./NavBar.scss";
+import NavMenu from "./NavMenu.astro";
 ---
 
 <nav class="main-nav fixed top-0 left-0 right-0 px-10 py-3">
-  <div class="main-nav__menu flex flex-row justify-end">
-    <div
-      class={`mr-2 main-nav__menu-item hover:underline ${
-        currentPath === "" ? "main-nav__menu-item--active" : ""
-      }`}
-    >
-      <a href="/" title="Home Page">Home</a>
-    </div>
-    <div
-      class={`mr-2 main-nav__menu-item hover:underline ${
-        currentPath === "events" ? "main-nav__menu-item--active" : ""
-      }`}
-    >
-      <a href="/events" title="Eventi">Eventi</a>
-    </div>
-    <div
-      class={`main-nav__menu-item hover:underline ${
-        currentPath === "contributors" ? "main-nav__menu-item--active" : ""
-      }`}
-    >
-      <a href="/contributors" title="Contributors">Contributors</a>
-    </div>
-  </div>
+  <NavMenu />
 </nav>

@@ -1,0 +1,20 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import { CollectionEntry, getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+  const collection = await getCollection("contributors");
+  return collection.map((entry: CollectionEntry<"contributors">) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+---
+
+<BaseLayout pageTitle={entry.data.name}>
+  <a href="/contributors">Tutti i contributori</a>
+  <Content />
+</BaseLayout>

@@ -1,9 +1,24 @@
 ---
-import BaseLayout from "../../layouts/BaseLayout.astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
 
 const pageTitle = "Contributors";
+
+const contributors = await getCollection("contributors");
 ---
 
 <BaseLayout pageTitle={pageTitle}>
   <h2>Contributors</h2>
+  <ul>
+    {
+      contributors.map((contributor) => (
+        <a
+          href={`/contributors/${contributor.slug}`}
+          title={contributor.data.name}
+        >
+          {contributor.data.name}
+        </a>
+      ))
+    }
+  </ul>
 </BaseLayout>
