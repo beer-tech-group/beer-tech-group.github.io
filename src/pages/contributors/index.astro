@@ -1,5 +1,5 @@
 ---
-import BaseLayout from "@layouts/BaseLayout.astro";
+import BaseLayoutWithTitle from "@layouts/BaseLayoutWithTitle.astro";
 import { getCollection } from "astro:content";
 
 const pageTitle = "Contributors";
@@ -7,7 +7,7 @@ const pageTitle = "Contributors";
 const contributors = await getCollection("contributors");
 ---
 
-<BaseLayout pageTitle={pageTitle}>
+<BaseLayoutWithTitle pageTitle={pageTitle}>
   <h2>Contributors</h2>
   <ul>
     {
@@ -21,4 +21,4 @@ const contributors = await getCollection("contributors");
       ))
     }
   </ul>
-</BaseLayout>
+</BaseLayoutWithTitle>

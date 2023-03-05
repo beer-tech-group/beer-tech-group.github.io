@@ -14,7 +14,14 @@ const contributorCollection = defineCollection({
   }),
 });
 
+const sponsorCollection = defineCollection({
+  schema: z.object({
+    name: z.string(),
+  }),
+});
+
 export const collections = {
   events: eventCollection,
   contributors: contributorCollection,
+  sponsors: sponsorCollection,
 };

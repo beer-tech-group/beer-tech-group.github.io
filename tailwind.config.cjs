@@ -5,9 +5,16 @@ module.exports = {
 	content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
 	theme: {
 		extend: {
+			colors: {
+				primary: '#000',
+				secondary: '#f4b11f'
+			},
 			fontFamily: {
 				'montserrat': ['Montserrat'],
 				'oswald': ['Oswald'],
+			},
+			height: {
+				'half-screen': '50vh'
 			}
 		},
 		fontFamily: {
@@ -26,7 +33,10 @@ module.exports = {
 			DEFAULT: {
 				css: {
 					h1: {
-						fontFamily: 'Oswald'
+						fontFamily: 'Oswald',
+					},
+					h2: {
+						fontFamily: 'Oswald',
 					},
 					h3: {
 						fontFamily: 'Oswald'

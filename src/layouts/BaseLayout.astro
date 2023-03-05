@@ -13,7 +13,10 @@ const { pageTitle } = Astro.props;
 <html lang="it">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <title>{`Beer Developer Group - ${pageTitle}`}</title>
@@ -27,13 +30,15 @@ const { pageTitle } = Astro.props;
     />
   </head>
   <body class="border-box prose">
-    <section class="px-4">
-      <NavBar />
-      <section class="mt-[70px]">
-        <h1>{pageTitle}</h1>
+    <div class="flex h-screen flex-col justify-between">
+      <header>
+        <NavBar />
+        <slot name="before-header" />
+      </header>
+      <section class="mb-auto px-4 sm:px-10">
         <slot />
       </section>
       <BaseFooter />
-    </section>
+    </div>
   </body>
 </html>
