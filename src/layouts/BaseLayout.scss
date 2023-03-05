@@ -1,4 +1,6 @@
 @tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 @layer base {
   h1 {
@@ -7,5 +9,11 @@
   }
   h2 {
     @apply text-xl;
+  }
+}
+
+@layer utilities {
+  .tagline {
+    font-size: theme("fontSize.2xl");
   }
 }

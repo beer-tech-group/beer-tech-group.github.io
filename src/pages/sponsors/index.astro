@@ -3,18 +3,18 @@ import { getCollection } from "astro:content";
 
 import BaseLayoutWithTitle from "@layouts/BaseLayoutWithTitle.astro";
 
-const pageTitle = "Events";
+const pageTitle = "Sponsors";
 
-const events = await getCollection("events");
+const sponsors = await getCollection("sponsors");
 ---
 
 <BaseLayoutWithTitle pageTitle={pageTitle}>
-  <h2>Eventi</h2>
+  <h2>Sponsors</h2>
   <ul>
     {
-      events.map((event) => (
-        <a href={`/events/${event.slug}`} title={event.data.title}>
-          {event.data.title}
+      sponsors.map((sponsor) => (
+        <a href={`/sponsors/${sponsor.slug}`} title={sponsor.data.name}>
+          {sponsor.data.name}
         </a>
       ))
     }

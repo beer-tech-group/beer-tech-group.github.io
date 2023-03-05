@@ -1,4 +1,6 @@
 @tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 @layer base {
   .main-nav {
@@ -7,10 +9,27 @@
       @apply uppercase;
       @apply text-2xl;
       @apply tracking-tighter;
+      transition: all 0.5s ease;
+
+      &:after {
+        transition: all 300ms ease;
+        content: " ";
+        display: block;
+        width: 0;
+        height: 4px;
+        background: theme("colors.primary");
+      }
+
+      &:hover {
+        &::after {
+          width: 100%;
+        }
+      }
 
       &--active {
-        @apply underline;
-        color: red;
+        &:after {
+          width: 100%;
+        }
       }
     }
   }

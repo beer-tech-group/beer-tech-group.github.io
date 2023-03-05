@@ -1,10 +1,41 @@
 ---
+import BeerParticlesContainer from "@components/display/BeerParticlesContainer.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
+import Section from "../components/layouts/Section.astro";
 
 const pageTitle = "Home";
 ---
 
 <BaseLayout pageTitle={pageTitle}>
-  <h2>My awesome blog subtitle</h2>
-  <p>My other text</p>
+  <BeerParticlesContainer slot="before-header">
+    <section class="flex w-full flex-col sm:flex-row sm:justify-between">
+      <h2 class="tagline">Beer Developer Group</h2>
+      <section>
+        <h3>Put here something</h3>
+      </section>
+    </section>
+  </BeerParticlesContainer>
+  <!-- TODO: maybe all of these sections should be a separated component. Just for atomization -->
+  <Section>
+    <h2>About</h2>
+    <p>About group</p>
+  </Section>
+  <Section>
+    <h2>How it works</h2>
+    <p>Explain here how events works.</p>
+  </Section>
+  <Section>
+    <h2>Incoming event</h2>
+    <p>Show incoming event here</p>
+  </Section>
+  <Section>
+    <h2>Sponsors</h2>
+    <p>
+      See all sponsors <a href="/sponsors" title="See all sponsors">here</a>
+    </p>
+  </Section>
+  <Section>
+    <h2>Disclaimer</h2>
+    <p>Some Disclaimer about beer</p>
+  </Section>
 </BaseLayout>
