@@ -1,8 +1,9 @@
 ---
+import Tagline from "../layouts/Tagline.astro";
 import BeerParticles from "./BeerParticles";
 ---
 
-<section class="relative left-0 top-0 right-0 h-screen sm:h-half-screen">
+<Tagline>
   <section class="absolute left-0 top-0 right-0 z-[-1] h-full w-full">
     <BeerParticles client:load />
   </section>
@@ -12,4 +13,4 @@ import BeerParticles from "./BeerParticles";
       <h2>Put your title or content here</h2>
     </slot>
   </section>
-</section>
+</Tagline>

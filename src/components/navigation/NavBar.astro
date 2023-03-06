@@ -1,7 +1,19 @@
 ---
+import "./NavBar.scss";
 import NavMenu from "./NavMenu.astro";
+
+type Props = {
+  pageTitle: string;
+  hasColor?: boolean;
+};
+
+const { pageTitle, hasColor = false } = Astro.props;
 ---
 
-<nav class="main-nav fixed top-0 left-0 right-0 z-[1] px-10 py-3">
-  <NavMenu />
+<nav
+  class={`main-nav ${
+    hasColor && "main-nav--colored"
+  } fixed top-0 left-0 right-0 z-[1] h-[80px] px-10 py-3`}
+>
+  <NavMenu pageTitle={pageTitle} />
 </nav>

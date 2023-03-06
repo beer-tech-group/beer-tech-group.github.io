@@ -1,32 +1,117 @@
 ---
+import { Icon } from "astro-icon";
 import "./NavMenu.scss";
 
-const pathname: string = new URL(Astro.request.url).pathname;
-const currentPath: string = pathname.slice(1); // remove the first "/"
+const pathName: string = new URL(Astro.request.url).pathname;
+
+const exactCompare = (link: string): boolean => pathName === link;
+const startWithCompare = (link: string): boolean => pathName.startsWith(link);
+
+type NavMenuItem = {
+  link: string;
+  label: string;
+  compare: (link: string) => boolean;
+  isLast: boolean;
+};
+
+const navLinks: NavMenuItem[] = [
+  {
+    link: "/",
+    label: "Home",
+    compare: exactCompare,
+    isLast: false,
+  },
+  {
+    link: "/events",
+    label: "Events",
+    compare: startWithCompare,
+    isLast: false,
+  },
+  {
+    link: "/contributors",
+    label: "Contributors",
+    compare: startWithCompare,
+    isLast: true,
+  },
+];
+
+type Props = {
+  pageTitle: string;
+};
+
+const { pageTitle } = Astro.props;
 ---
 
+<script>
+  function openMenu() {
+    const menuFloat = document.getElementById("menufloat");
+    menuFloat?.classList.remove("w-0", "h-0");
+    menuFloat?.classList.add("w-full");
+  }
+
+  function closeMenu() {
+    const menuFloat = document.getElementById("menufloat");
+    menuFloat?.classList.remove("w-full");
+    menuFloat?.classList.add("w-0", "h-0");
+  }
+
+  document.getElementById("open-menuicon")?.addEventListener("click", openMenu);
+  document
+    .getElementById("close-menuicon")
+    ?.addEventListener("click", closeMenu);
+</script>
+
 <div class="main-nav__menu flex flex-row justify-end">
-  <div
-    class={`mr-2 main-nav__menu-item ${
-      currentPath === "" ? "main-nav__menu-item--active" : ""
-    }`}
-  >
-    <a href="/">Home</a>
+  <div class="sm:hidden"><h1>{pageTitle}</h1></div>
+  <div class="hidden sm:block sm:flex sm:flex-row">
+    {
+      navLinks.map(({ label, compare, isLast, link }) => {
+        return (
+          <div
+            class={`${isLast ? "" : "mr-5"} main-nav__menu-item ${
+              compare(link) ? "main-nav__menu-item--active" : ""
+            }`}
+          >
+            <a href={link} class="block">
+              {label}
+            </a>
+          </div>
+        );
+      })
+    }
   </div>
-  <div
-    class={`mr-2 main-nav__menu-item ${
-      currentPath.startsWith("events") ? "main-nav__menu-item--active" : ""
-    }`}
-  >
-    <a href="/events">Eventi</a>
+
+  <div class="ml-3 block">
+    <button id="open-menuicon" class="h-[50px] w-[50px] sm:hidden">
+      <Icon name="mdi:menu" />
+    </button>
   </div>
-  <div
-    class={`main-nav__menu-item ${
-      currentPath.startsWith("contributors")
-        ? "main-nav__menu-item--active"
-        : ""
-    }`}
-  >
-    <a href="/contributors">Contributors</a>
+</div>
+
+<div
+  id="menufloat"
+  class="fixed top-0 right-0 h-screen w-0 overflow-hidden transition-all duration-[250ms] ease-in-out sm:hidden"
+>
+  <div class="py-10 px-20">
+    <div class="flex flex-row items-end justify-end">
+      <button id="close-menuicon" class="h-[50px] w-[50px]">
+        <Icon name="mdi:close" />
+      </button>
+    </div>
+    <nav class="mt-20">
+      {
+        navLinks.map(({ label, compare, link }) => {
+          return (
+            <div
+              class={`main-nav__menu-item mb-2 text-center ${
+                compare(link) ? "float-nav__menu-item--active" : ""
+              }`}
+            >
+              <a href={link}>{label}</a>
+            </div>
+          );
+        })
+      }
+    </nav>
   </div>
 </div>

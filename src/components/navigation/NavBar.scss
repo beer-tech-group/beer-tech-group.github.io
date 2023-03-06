@@ -1,0 +1,7 @@
+.main-nav {
+  background: transparent;
+  transition: all 250ms ease-in-out;
+  &--colored {
+    background: #fff;
+  }
+}
