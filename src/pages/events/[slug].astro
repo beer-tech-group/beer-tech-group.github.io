@@ -1,20 +1,242 @@
 ---
-import { getCollection } from "astro:content";
-import BaseLayout from "../../layouts/BaseLayout.astro";
+import Chip from "@components/display/Chip.astro";
+import ButtonLink from "@components/input/ButtonLink.astro";
+import Tagline from "@components/layouts/Tagline.astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import { CollectionEntry, getCollection, getEntryBySlug } from "astro:content";
+import moment from "moment";
+import "moment/locale/it";
+import ContentSection from "../../components/display/ContentSection.astro";
+import ContentTitle from "../../components/display/ContentTitle.astro";
+import ContributorPreview from "../../components/display/ContributorPreview.astro";
+import SponsorPreview from "../../components/display/SponsorPreview.astro";
+import MosaicSection from "../../components/layouts/MosaicSection.astro";
+import SpeechCounter from "../../components/ui/events/SpeechCounter.astro";
+moment.locale("it");
+
+import "./Event.scss";
 
 export async function getStaticPaths() {
   const events = await getCollection("events");
-  return events.map((entry) => ({
-    params: { slug: entry.slug },
-    props: { entry },
-  }));
+  return await Promise.all(
+    events.map(async (entry: CollectionEntry<"events">) => {
+      const speakers = await Promise.all(
+        entry.data.speakers?.map(async (speaker: string) =>
+          getEntryBySlug("contributors", speaker)
+        ) || []
+      );
+
+      const mentors = await Promise.all(
+        entry.data.mentors?.map(async (mentor: string) =>
+          getEntryBySlug("contributors", mentor)
+        ) || []
+      );
+
+      const sponsors = await Promise.all(
+        entry.data.sponsors?.map(async (sponsor: string) =>
+          getEntryBySlug("sponsors", sponsor)
+        ) || []
+      );
+
+      return {
+        params: { slug: entry.slug },
+        props: { event: entry, speakers, mentors, sponsors },
+      };
+    })
+  );
 }
 
-const { entry } = Astro.props;
-const { Content } = await entry.render();
+type Props = {
+  event: CollectionEntry<"events">;
+  speakers: CollectionEntry<"contributors">[];
+  mentors: CollectionEntry<"contributors">[];
+  sponsors: CollectionEntry<"sponsors">[];
+};
+
+const { event, speakers, mentors, sponsors } = Astro.props;
+const { data } = event;
+const { Content } = await event.render();
+
+const bookingOver = moment(data.date).isBefore(moment().endOf("d"));
 ---
 
-<BaseLayout pageTitle={entry.data.title}>
-  <a href="/events">Tutti gli eventi</a>
-  <Content />
+<BaseLayout pageTitle={data.title}>
+  <Tagline slot="before-header">
+    <div class="mb-10">
+      <h2 class="event-title">{data.title}</h2>
+      <h3 class="event-date">
+        {moment(data.date).format("dddd DD MMMM YYYY, HH:mm")}
+      </h3>
+      <p class="event-address">
+        {data.address} @
+        {
+          data.locationLink ? (
+            <a href={data.locationLink} target="_blank">
+              {data.location}
+            </a>
+          ) : (
+            data.location
+          )
+        }
+      </p>
+    </div>
+
+    <section class="mt-10 flex flex-row flex-wrap">
+      <Chip className="mr-2">{data.mode}</Chip>
+      <Chip>{data.type}</Chip>
+    </section>
+
+    <section class="mt-10 flex flex-row flex-wrap">
+      {
+        data.tags.map((tag) => (
+          <Chip variant="contained" className="mr-2 mb-2">
+            {tag}
+          </Chip>
+        ))
+      }
+    </section>
+  </Tagline>
+
+  <ContentSection
+    className="flex flex-wrap  flex-row justify-evenly items-center"
+  >
+    {
+      data.participants && (
+        <SpeechCounter
+          icon="groups"
+          title="Partecipanti"
+          counter={data.participants}
+        />
+      )
+    }
+    {
+      speakers.length > 0 && (
+        <SpeechCounter
+          icon="record_voice_over"
+          title="Speakers"
+          counter={speakers.length}
+        />
+      )
+    }
+
+    {
+      mentors.length > 0 && (
+        <SpeechCounter
+          icon="local_police"
+          title="Mentors"
+          counter={mentors.length}
+        />
+      )
+    }
+    {
+      sponsors.length > 0 && (
+        <SpeechCounter
+          icon="rocket_launch"
+          title="Sponsors"
+          counter={sponsors.length}
+        />
+      )
+    }
+  </ContentSection>
+
+  <ContentSection className="text-center">
+    {
+      data.invitationLink && !bookingOver && (
+        <ButtonLink
+          link={data.invitationLink}
+          color="secondary"
+          variant="contained"
+          external
+        >
+          Partecipa
+        </ButtonLink>
+      )
+    }
+    {bookingOver && <strong>Registrazioni concluse</strong>}
+  </ContentSection>
+
+  <ContentSection>
+    <div class="divide-x-2">
+      <hr />
+    </div>
+  </ContentSection>
+
+  <ContentSection>
+    <Content />
+  </ContentSection>
+
+  <!-- Speakers -->
+  {
+    speakers.length > 0 ? (
+      <ContentSection>
+        <ContentTitle>Speakers</ContentTitle>
+        <MosaicSection>
+          {speakers.map((speaker) => (
+            <>
+              <ContributorPreview
+                refId="speakers"
+                person={speaker}
+                className="mb-10 sm:mr-10"
+              />
+            </>
+          ))}
+        </MosaicSection>
+      </ContentSection>
+    ) : null
+  }
+
+  <!-- Mentors -->
+  {
+    mentors.length > 0 ? (
+      <ContentSection>
+        <ContentTitle>Mentors</ContentTitle>
+        <MosaicSection>
+          {mentors.map((mentor) => (
+            <ContributorPreview
+              refId="mentors"
+              person={mentor}
+              className="mb-10 sm:mr-10"
+            />
+          ))}
+        </MosaicSection>
+      </ContentSection>
+    ) : null
+  }
+
+  <!-- Sponsors -->
+  {
+    sponsors.length > 0 ? (
+      <ContentSection>
+        <ContentTitle>Sponsors</ContentTitle>
+        <MosaicSection>
+          {sponsors.map((sponsor) => (
+            <SponsorPreview sponsor={sponsor} />
+          ))}
+        </MosaicSection>
+      </ContentSection>
+    ) : null
+  }
+
+  <ContentSection>
+    <div class="divide-x-2">
+      <hr />
+    </div>
+  </ContentSection>
+
+  <ContentSection className="my-24 text-center">
+    {
+      data.invitationLink && !bookingOver && (
+        <ButtonLink
+          link={data.invitationLink}
+          className="mb-2 md:mb-0"
+          color="secondary"
+          variant="contained"
+          external
+        >
+          Partecipa
+        </ButtonLink>
+      )
+    }
+    <ButtonLink link="/events" className="ml-5">Tutti gli eventi</ButtonLink>
+  </ContentSection>
 </BaseLayout>

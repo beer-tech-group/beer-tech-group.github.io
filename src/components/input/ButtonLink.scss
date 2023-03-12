@@ -1,0 +1,44 @@
+.button-link {
+  @apply inline-block;
+  @apply py-3;
+  @apply px-6;
+  @apply border-solid;
+  @apply transition-all;
+  @apply duration-200;
+  @apply ease-in;
+  @apply font-oswald;
+  @apply uppercase;
+
+  &--outlined {
+    @apply border-2;
+    @apply rounded-full;
+
+    &-primary {
+      @apply border-primary;
+      @apply bg-transparent;
+      @apply text-primary;
+
+      &:hover {
+        @apply bg-gray-50;
+      }
+    }
+  }
+
+  &--contained {
+    @apply border-2;
+    @apply rounded-full;
+
+    &-secondary {
+      @apply border-secondary;
+      @apply bg-secondary;
+      @apply text-primary;
+      @apply transition-all;
+      @apply duration-200;
+      @apply ease-in;
+
+      &:hover {
+        @apply bg-white;
+      }
+    }
+  }
+}

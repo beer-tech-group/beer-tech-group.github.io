@@ -1,0 +1,26 @@
+---
+import { Picture } from "@astrojs/image/components";
+import type { CollectionEntry } from "astro:content";
+
+type Props = {
+  sponsor: CollectionEntry<"sponsors">;
+  className?: string;
+};
+
+const { sponsor, className = "" } = Astro.props;
+
+const { data } = sponsor;
+---
+
+<section class={`flex flex-col items-center justify-start ${className}`}>
+  <a href={data.url} title={data.name} target="_blank">
+    <Picture
+      src={data.logo}
+      widths={[200]}
+      aspectRatio="16:9"
+      sizes="200px"
+      alt={data.name}
+      class="rounded-full"
+    />
+  </a>
+</section>

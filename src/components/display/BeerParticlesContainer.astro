@@ -7,10 +7,7 @@ import BeerParticles from "./BeerParticles";
   <section class="absolute left-0 top-0 right-0 z-[-1] h-full w-full">
     <BeerParticles client:load />
   </section>
-
-  <section class="flex h-full flex-col justify-center px-8 sm:px-20">
-    <slot>
-      <h2>Put your title or content here</h2>
-    </slot>
-  </section>
+  <slot>
+    <h2>Put your title or content here</h2>
+  </slot>
 </Tagline>

@@ -1,0 +1,18 @@
+---
+type Props = {
+  variant?: "outlined" | "contained";
+  className?: string;
+};
+
+const { variant = "outlined", className = "" } = Astro.props;
+---
+
+<div
+  class={`inline-block rounded-full border-2 border-solid border-primary py-2 px-6 font-oswald ${
+    variant === "outlined"
+      ? "text-primary bg-transparent"
+      : "text-white bg-primary"
+  } ${className}`}
+>
+  <slot />
+</div>

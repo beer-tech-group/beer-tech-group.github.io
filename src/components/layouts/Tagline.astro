@@ -1,8 +1,21 @@
 ---
+type Props = {
+  color?: "primary" | "secondary";
+};
+
+const { color = "secondary" } = Astro.props;
 ---
 
 <section
-  class={`tagline relative left-0 top-0 right-0 h-screen sm:h-half-screen`}
+  class={`tagline-container relative left-0 top-0 right-0 h-screen z-[1] sm:h-half-screen ${
+    color === "secondary" ? "bg-secondary" : "bg-primary"
+  }`}
 >
-  <slot />
+  <section
+    class="relative z-[2] flex h-full flex-col items-start justify-center px-8 sm:px-20"
+  >
+    <slot>
+      <h2>Put your title or content here</h2>
+    </slot>
+  </section>
 </section>

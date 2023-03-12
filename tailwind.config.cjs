@@ -5,6 +5,13 @@ module.exports = {
 	content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
 	theme: {
 		extend: {
+			backgroundColor: {
+				secondary: '#f4b11f'
+			},
+			borderColor: {
+				primary: '#000',
+				secondary: '#f4b11f'
+			},
 			colors: {
 				primary: '#000',
 				secondary: '#f4b11f'

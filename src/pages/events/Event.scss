@@ -1,0 +1,26 @@
+.event {
+  &-title {
+    @apply text-4xl;
+    @apply mb-3;
+  }
+
+  &-address {
+    @apply italic;
+    @apply text-sm;
+    &:first-letter {
+      @apply uppercase;
+    }
+  }
+
+  &-date {
+    @apply text-xl;
+    &:first-letter {
+      @apply uppercase;
+    }
+  }
+}
+
+h4 {
+  @apply italic;
+  @apply font-semibold;
+}

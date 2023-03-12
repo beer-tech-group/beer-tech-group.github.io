@@ -1,42 +1,37 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+.main-nav {
+  &__menu-item {
+    @apply font-oswald;
+    @apply uppercase;
+    @apply text-2xl;
+    @apply tracking-tighter;
 
-@layer base {
-  .main-nav {
-    &__menu-item {
-      @apply font-oswald;
-      @apply uppercase;
-      @apply text-2xl;
-      @apply tracking-tighter;
+    &:after {
+      display: block;
+      content: "";
+      border-bottom: solid 4px theme("colors.primary");
+      transform: scaleX(0);
+      transition: transform 250ms ease-in-out;
+    }
 
+    &:hover {
+      &::after {
+        transform: scaleX(1);
+      }
+    }
+
+    &--active {
       &:after {
-        display: block;
-        content: "";
-        border-bottom: solid 4px theme("colors.primary");
-        transform: scaleX(0);
-        transition: transform 250ms ease-in-out;
-      }
-
-      &:hover {
-        &::after {
-          transform: scaleX(1);
-        }
-      }
-
-      &--active {
-        &:after {
-          transform: scaleX(1);
-          transform-origin: 0% 50%;
-        }
+        transform: scaleX(1);
+        transform-origin: 0% 50%;
       }
     }
   }
-  .float-nav {
-    &__menu-item {
-      &--active {
-        color: theme("colors.secondary");
-      }
+}
+
+.float-nav {
+  &__menu-item {
+    &--active {
+      color: theme("colors.secondary");
     }
   }
 }

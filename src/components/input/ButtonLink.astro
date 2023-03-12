@@ -1,0 +1,29 @@
+---
+import "./ButtonLink.scss";
+type Props = {
+  className?: string;
+  link: string;
+  variant?: "outlined" | "contained";
+  color?: "primary" | "secondary";
+  external?: boolean;
+};
+
+const {
+  link,
+  className = "",
+  variant = "outlined",
+  color = "primary",
+  external = false,
+} = Astro.props;
+
+const variantClass = `button-link--${variant}`;
+const colorClass = `button-link--${variant}-${color}`;
+---
+
+<a
+  href={link}
+  class={`button-link ${variantClass} ${colorClass} ${className}`}
+  target={external ? "_blank" : "_self"}
+>
+  <slot />
+</a>
