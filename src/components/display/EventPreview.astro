@@ -14,13 +14,18 @@ const { data } = event;
 ---
 
 <section class={`flex flex-col items-center justify-start ${className}`}>
-  <section class="mt-5 text-center">
+  <section class="my-2 text-center">
     <h3 class="text-xl">{data.title}</h3>
     <h4 class={`font-normal not-italic`}>
       {moment(data.date).format("DD MMM, YYYY")}
     </h4>
-    <h4 class="mb-3 font-normal italic">{data.type}</h4>
-    <ButtonLink link={data.permalink} color="secondary" variant="contained">
+    <h4 class="font-normal italic">{data.type}</h4>
+    <ButtonLink
+      link={data.permalink}
+      color="secondary"
+      variant="contained"
+      className="mt-3"
+    >
       Vedi
     </ButtonLink>
   </section>

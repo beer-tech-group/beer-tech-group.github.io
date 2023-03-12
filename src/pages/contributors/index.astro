@@ -1,24 +1,131 @@
 ---
-import BaseLayoutWithTitle from "@layouts/BaseLayoutWithTitle.astro";
-import { getCollection } from "astro:content";
+import { CollectionEntry, getCollection, getEntryBySlug } from "astro:content";
+import ContentSection from "../../components/display/ContentSection.astro";
+import ContentTitle from "../../components/display/ContentTitle.astro";
+import ContributorPreview from "../../components/display/ContributorPreview.astro";
+import MosaicSection from "../../components/layouts/MosaicSection.astro";
 
-const pageTitle = "Contributors";
+import Tagline from "../../components/layouts/Tagline.astro";
+import TaglineIcon from "../../components/layouts/TaglineIcon.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
 
-const contributors = await getCollection("contributors");
+export async function getStaticPaths() {
+  return {
+    params: { path: "" },
+  };
+}
+
+const pageTitle = "Contributori";
+
+// Fetch all founders, sorted by name desc
+const founders: CollectionEntry<"contributors">[] = (
+  await getCollection("contributors", ({ data }) => {
+    return data.draft !== true && data.isFounder === true;
+  })
+).sort((a, b) =>
+  (a?.data.name || "").localeCompare(b?.data.name || "")
+) as CollectionEntry<"contributors">[];
+
+// Select all non-draft events
+const events = await getCollection("events", ({ data }) => data.draft !== true);
+
+// Unique list of speakers by slug
+const allSpeakersBySlug = [
+  ...new Set(events.map((event) => event.data.speakers || []).flat()),
+];
+
+// Unique list of mentors by slug
+const allMentorsBySlug = [
+  ...new Set(events.map((event) => event.data.mentors || []).flat()),
+];
+
+// Fetch all speakers info from Contributors collection, ordered by name desc
+const speakers: CollectionEntry<"contributors">[] = (
+  await Promise.all(
+    allSpeakersBySlug.map(
+      async (speaker) => await getEntryBySlug("contributors", speaker)
+    )
+  )
+)
+  .filter((speaker) => speaker !== undefined && speaker.data.draft !== true)
+  .sort((a, b) =>
+    (a?.data.name || "").localeCompare(b?.data.name || "")
+  ) as CollectionEntry<"contributors">[];
+
+// Fetch all mentors info from Contributors collection, ordered by name desc
+const mentors: CollectionEntry<"contributors">[] = (
+  await Promise.all(
+    allMentorsBySlug.map(
+      async (mentor) => await getEntryBySlug("contributors", mentor)
+    )
+  )
+)
+  .filter((mentor) => mentor !== undefined && mentor.data.draft !== true)
+  .sort((a, b) =>
+    (a?.data.name || "").localeCompare(b?.data.name || "")
+  ) as CollectionEntry<"contributors">[];
 ---
 
-<BaseLayoutWithTitle pageTitle={pageTitle}>
-  <h2>Contributors</h2>
-  <ul>
-    {
-      contributors.map((contributor) => (
-        <a
-          href={`/contributors/${contributor.slug}`}
-          title={contributor.data.name}
-        >
-          {contributor.data.name}
-        </a>
-      ))
-    }
-  </ul>
-</BaseLayoutWithTitle>
+<BaseLayout pageTitle={pageTitle}>
+  <Tagline slot="after-header">
+    <TaglineIcon icon="partner_exchange" />
+    <div class="mb-10">
+      <h2>Contributori</h2>
+      <h4>Le persone che contribuiscono al Beer Tech Group</h4>
+    </div>
+  </Tagline>
+
+  <!-- Founders -->
+  {
+    founders.length > 0 && (
+      <ContentSection>
+        <ContentTitle>Founders</ContentTitle>
+        <MosaicSection>
+          {founders.map((founder) => (
+            <ContributorPreview
+              refId="founders"
+              person={founder}
+              className="mb-10 sm:mr-10"
+            />
+          ))}
+        </MosaicSection>
+      </ContentSection>
+    )
+  }
+
+  <!-- Speakers -->
+  {
+    speakers.length > 0 && (
+      <ContentSection>
+        <ContentTitle>All speakers</ContentTitle>
+        <MosaicSection>
+          {speakers.map((speaker) => (
+            <ContributorPreview
+              refId="speakers"
+              person={speaker}
+              className="mb-10 sm:mr-10"
+            />
+          ))}
+        </MosaicSection>
+      </ContentSection>
+    )
+  }
+
+  <!-- Mentors -->
+  {
+    mentors.length > 0 && (
+      <ContentSection>
+        <ContentTitle>All mentors</ContentTitle>
+        <MosaicSection>
+          {mentors.map((mentor) => (
+            <ContributorPreview
+              refId="mentors"
+              person={mentor}
+              className="mb-10 sm:mr-10"
+            />
+          ))}
+        </MosaicSection>
+      </ContentSection>
+    )
+  }
+</BaseLayout>

@@ -21,23 +21,29 @@ export async function getStaticPaths() {
   const events = await getCollection("events");
   return await Promise.all(
     events.map(async (entry: CollectionEntry<"events">) => {
-      const speakers = await Promise.all(
-        entry.data.speakers?.map(async (speaker: string) =>
-          getEntryBySlug("contributors", speaker)
-        ) || []
-      );
+      const speakers = (
+        await Promise.all(
+          entry.data.speakers?.map(async (speaker: string) =>
+            getEntryBySlug("contributors", speaker)
+          ) || []
+        )
+      ).filter((entry) => entry !== undefined);
 
-      const mentors = await Promise.all(
-        entry.data.mentors?.map(async (mentor: string) =>
-          getEntryBySlug("contributors", mentor)
-        ) || []
-      );
+      const mentors = (
+        await Promise.all(
+          entry.data.mentors?.map(async (mentor: string) =>
+            getEntryBySlug("contributors", mentor)
+          ) || []
+        )
+      ).filter((entry) => entry !== undefined);
 
-      const sponsors = await Promise.all(
-        entry.data.sponsors?.map(async (sponsor: string) =>
-          getEntryBySlug("sponsors", sponsor)
-        ) || []
-      );
+      const sponsors = (
+        await Promise.all(
+          entry.data.sponsors?.map(async (sponsor: string) =>
+            getEntryBySlug("sponsors", sponsor)
+          ) || []
+        )
+      ).filter((entry) => entry !== undefined);
 
       return {
         params: { slug: entry.slug },
@@ -178,7 +184,7 @@ const bookingOver = moment(data.date).isBefore(moment().endOf("d"));
               <ContributorPreview
                 refId="speakers"
                 person={speaker}
-                className="mb-10 sm:mr-10"
+                className="my-5 sm:mx-5"
               />
             </>
           ))}
@@ -197,7 +203,7 @@ const bookingOver = moment(data.date).isBefore(moment().endOf("d"));
             <ContributorPreview
               refId="mentors"
               person={mentor}
-              className="mb-10 sm:mr-10"
+              className="my-5 sm:mx-5"
             />
           ))}
         </MosaicSection>
