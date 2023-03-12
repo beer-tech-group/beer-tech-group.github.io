@@ -11,6 +11,7 @@ import ContentTitle from "../../components/display/ContentTitle.astro";
 import ContributorPreview from "../../components/display/ContributorPreview.astro";
 import SponsorPreview from "../../components/display/SponsorPreview.astro";
 import MosaicSection from "../../components/layouts/MosaicSection.astro";
+import TaglineIcon from "../../components/layouts/TaglineIcon.astro";
 import SpeechCounter from "../../components/ui/events/SpeechCounter.astro";
 moment.locale("it");
 
@@ -61,7 +62,8 @@ const bookingOver = moment(data.date).isBefore(moment().endOf("d"));
 ---
 
 <BaseLayout pageTitle={data.title}>
-  <Tagline slot="before-header">
+  <Tagline slot="after-header">
+    <TaglineIcon icon="sports_bar" />
     <div class="mb-10">
       <h2 class="event-title">{data.title}</h2>
       <h3 class="event-date">

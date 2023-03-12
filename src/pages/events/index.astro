@@ -1,7 +1,14 @@
 ---
 import { getCollection } from "astro:content";
+import moment from "moment";
+import ContentSection from "../../components/display/ContentSection.astro";
+import ContentTitle from "../../components/display/ContentTitle.astro";
+import EventPreview from "../../components/display/EventPreview.astro";
+import MosaicSection from "../../components/layouts/MosaicSection.astro";
 
-import BaseLayoutWithTitle from "@layouts/BaseLayoutWithTitle.astro";
+import Tagline from "../../components/layouts/Tagline.astro";
+import TaglineIcon from "../../components/layouts/TaglineIcon.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
 
 export async function getStaticPaths() {
   return {
@@ -12,17 +19,49 @@ export async function getStaticPaths() {
 const pageTitle = "Events";
 
 const events = await getCollection("events");
+
+const pastEvents = events.filter((event) =>
+  moment(event.data.date).isBefore(moment())
+);
+const futureEvents = events.filter((event) =>
+  moment(event.data.date).isAfter(moment())
+);
 ---
 
-<BaseLayoutWithTitle pageTitle={pageTitle}>
-  <h2>Eventi</h2>
-  <ul>
+<BaseLayout pageTitle={pageTitle}>
+  <Tagline slot="after-header">
+    <TaglineIcon icon="calendar_month" />
+    <div class="mb-10">
+      <h2>Eventi</h2>
+      <h4>Tutti gli eventi del Beer Tech Group</h4>
+    </div>
+  </Tagline>
+  <ContentSection>
+    <ContentTitle>Prossimi eventi</ContentTitle>
     {
-      events.map((event) => (
-        <a href={`${event.data.permalink}`} title={event.data.title}>
-          {event.data.title}
-        </a>
-      ))
+      futureEvents.length > 0 ? (
+        <MosaicSection>
+          {futureEvents.map((event) => (
+            <EventPreview event={event} />
+          ))}
+        </MosaicSection>
+      ) : (
+        <p class="text-center font-bold">
+          Nessun evento in programma. Verifica tra qualche giorno.
+        </p>
+      )
     }
-  </ul>
-</BaseLayoutWithTitle>
+  </ContentSection>
+  {
+    pastEvents.length > 0 && (
+      <ContentSection>
+        <ContentTitle className="text-left">Eventi Passati</ContentTitle>
+        <MosaicSection>
+          {pastEvents.map((event) => (
+            <EventPreview event={event} />
+          ))}
+        </MosaicSection>
+      </ContentSection>
+    )
+  }
+</BaseLayout>
