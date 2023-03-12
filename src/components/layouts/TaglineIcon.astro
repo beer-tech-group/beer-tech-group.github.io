@@ -1,0 +1,13 @@
+---
+type Props = {
+  icon: string;
+};
+
+const { icon } = Astro.props;
+---
+
+<div class="absolute right-2 bottom-2 sm:right-4 sm:bottom-4">
+  <span class="material-symbols-outlined text-[10em] text-secondaryAlt">
+    {icon}</span
+  >
+</div>

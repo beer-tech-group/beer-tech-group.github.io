@@ -1,0 +1,13 @@
+.tagline-container {
+  h2 {
+    @apply mb-3;
+  }
+
+  h4 {
+    @apply italic;
+    @apply font-semibold;
+  }
+  a {
+    @apply underline;
+  }
+}

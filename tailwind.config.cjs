@@ -14,7 +14,8 @@ module.exports = {
 			},
 			colors: {
 				primary: '#000',
-				secondary: '#f4b11f'
+				secondary: '#f4b11f',
+				secondaryAlt: '#e7a619'
 			},
 			fontFamily: {
 				'montserrat': ['Montserrat'],
@@ -41,12 +42,15 @@ module.exports = {
 				css: {
 					h1: {
 						fontFamily: 'Oswald',
+						fontSize: '4.052rem'
 					},
 					h2: {
 						fontFamily: 'Oswald',
+						fontSize: '3.052rem'
 					},
 					h3: {
-						fontFamily: 'Oswald'
+						fontFamily: 'Oswald',
+						fontSize: '1.563rem'
 					},
 				}
 			}
