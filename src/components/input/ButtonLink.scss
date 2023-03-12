@@ -8,6 +8,7 @@
   @apply ease-in;
   @apply font-oswald;
   @apply uppercase;
+  @apply no-underline;
 
   &--outlined {
     @apply border-2;

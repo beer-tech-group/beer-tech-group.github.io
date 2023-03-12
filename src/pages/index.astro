@@ -1,41 +1,114 @@
 ---
 import BeerParticlesContainer from "@components/display/BeerParticlesContainer.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
-import Section from "../components/layouts/Section.astro";
+import { getCollection } from "astro:content";
+import moment from "moment";
+import ContentSection from "../components/display/ContentSection.astro";
+import ContentTitle from "../components/display/ContentTitle.astro";
+import EventPreview from "../components/display/EventPreview.astro";
+import MosaicSection from "../components/layouts/MosaicSection.astro";
 
 const pageTitle = "Home";
+
+const events = (
+  await getCollection(
+    "events",
+    ({ data }) => data.draft !== true && moment(data.date).isAfter(moment())
+  )
+)
+  .sort((a, b) => moment(a.data.date).diff(b.data.date))
+  .slice(0, 3);
 ---
 
 <BaseLayout isNavBarSticky={false} pageTitle={pageTitle}>
   <BeerParticlesContainer slot="after-header">
     <section class="flex w-full flex-col sm:flex-row sm:justify-between">
-      <h2 class="tagline">Beer Tech Group</h2>
-      <section>
-        <h3>Put here something</h3>
-      </section>
+      <h2>Beer Tech Group</h2>
     </section>
   </BeerParticlesContainer>
-  <!-- TODO: maybe all of these sections should be a separated component. Just for atomization -->
-  <Section>
-    <h2>About</h2>
-    <p>About group</p>
-  </Section>
-  <Section>
-    <h2>How it works</h2>
-    <p>Explain here how events works.</p>
-  </Section>
-  <Section>
-    <h2>Incoming event</h2>
-    <p>Show incoming event here</p>
-  </Section>
-  <Section>
-    <h2>Sponsors</h2>
+
+  <ContentSection>
+    <ContentTitle>Prossimi eventi</ContentTitle>
+    {
+      events.length > 0 ? (
+        <MosaicSection>
+          {events.map((event) => (
+            <EventPreview event={event} className="my-5 sm:mx-5" />
+          ))}
+        </MosaicSection>
+      ) : (
+        <p class="text-center font-bold">
+          Nessun evento in programma. Verifica tra qualche giorno.
+        </p>
+      )
+    }
+  </ContentSection>
+
+  <ContentSection>
+    <div class="divide-x-2">
+      <hr />
+    </div>
+  </ContentSection>
+
+  <!-- About -->
+  <ContentSection>
+    <ContentTitle>Chi siamo</ContentTitle>
     <p>
-      See all sponsors <a href="/sponsors" title="See all sponsors">here</a>
+      Il <strong>Beer Tech Group</strong> è un gruppo di developer, designer e appassionati
+      di tecnologia, che fanno base a Palermo, Italia. Nasce nel 2023 con lo scopo
+      di portare il format <strong>"Tech and Beer"</strong> nel capoluogo siciliano.
     </p>
-  </Section>
-  <Section>
-    <h2>Disclaimer</h2>
-    <p>Some Disclaimer about beer</p>
-  </Section>
+    <p>
+      Con la volontà di creare una comunità di tecnofili coesa e sempre più
+      grande, abbiamo deciso di non legarci ad alcuna tecnologia particolare,
+      anzi incentiviamo la diversità in tutte le sue forme. Per questo motivo
+      cerchiamo attivamente di coinvolgere ruoli diversi e parlare di argomenti
+      non strettamente legati ad un solo ambito.
+    </p>
+  </ContentSection>
+
+  <!-- How it works -->
+  <ContentSection>
+    <ContentTitle>Come partecipare</ContentTitle>
+    <p>
+      Periodicamente organizziamo degli eventi usando il format <strong
+        >"Tech and Beer"</strong
+      >, ovvero una modalità di evento informale in cui i partecipanti si
+      trovano in un luogo comune con la possibilità di assistere a degli <i
+        >speech</i
+      >, condividendo una birra, restando insieme e chiacchierando anche oltre
+      la fine dell'evento. Con la possibilità di usufruire dei mentor a
+      disposizione o anche solo per conoscersi e stare in compagnia.
+    </p>
+    <p>Il primo giro è offerto da noi o dai nostri sponsor.</p>
+    <p>
+      Per partecipare segui il nostro sito o i nostri canali social e registrati
+      agli eventi. All'ingresso dell'evento la tua iscrizione sarà verificata e
+      riceverai il token per riscattare la tua birra e il tuo gadget.
+    </p>
+  </ContentSection>
+
+  <ContentSection>
+    <div class="divide-x-2">
+      <hr />
+    </div>
+  </ContentSection>
+
+  <!-- Attention -->
+  <ContentSection>
+    <h3 class="text-md">Attenzione</h3>
+    <p class="text-[14px]">
+      In alcun modo incentiviamo e appoggiamo l'abuso di alcol. L'alcolismo è
+      una malattia seria e non va sottovalutata in alcuna maniera. Se tu o
+      qualcuno che conosci pensi abbia bisogno di aiuto contatta <a
+        class="underline"
+        href="https://www.salute.gov.it/portale/alcol/dettaglioContenutiAlcol.jsp?lingua=italiano&id=2366&area=alcol&menu=vuoto"
+        >gli organi preposti</a
+      >.
+    </p>
+    <p class="text-[14px]">
+      I partecipanti ai nostri eventi devono essere maggiorenni e in alcun modo
+      faremo eccezioni.
+    </p>
+  </ContentSection>
 </BaseLayout>
