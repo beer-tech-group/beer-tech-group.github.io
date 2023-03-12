@@ -18,6 +18,7 @@ const eventCollection = defineCollection({
     soldout: z.boolean().optional(),
     tags: z.array(z.string()),
     permalink: z.string(),
+    draft: z.boolean().optional(),
   }),
 });
 
@@ -28,6 +29,9 @@ const contributorCollection = defineCollection({
     business: z.string().optional(),
     image: z.string(),
     permalink: z.string(),
+    isFounder: z.boolean().optional(),
+    draft: z.boolean().optional(),
+    noBio: z.boolean().optional(),
   }),
 });
 
@@ -37,6 +41,7 @@ const sponsorCollection = defineCollection({
     logo: z.string(),
     url: z.string(),
     permalink: z.string(),
+    draft: z.boolean().optional(),
   }),
 });
 

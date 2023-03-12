@@ -16,9 +16,9 @@ export async function getStaticPaths() {
   };
 }
 
-const pageTitle = "Events";
+const pageTitle = "Eventi";
 
-const events = await getCollection("events");
+const events = await getCollection("events", ({ data }) => data.draft !== true);
 
 const pastEvents = events.filter((event) =>
   moment(event.data.date).isBefore(moment())
@@ -42,7 +42,7 @@ const futureEvents = events.filter((event) =>
       futureEvents.length > 0 ? (
         <MosaicSection>
           {futureEvents.map((event) => (
-            <EventPreview event={event} />
+            <EventPreview event={event} className="my-5 sm:mx-5" />
           ))}
         </MosaicSection>
       ) : (
@@ -58,7 +58,7 @@ const futureEvents = events.filter((event) =>
         <ContentTitle className="text-left">Eventi Passati</ContentTitle>
         <MosaicSection>
           {pastEvents.map((event) => (
-            <EventPreview event={event} />
+            <EventPreview event={event} className="my-5 sm:mx-5" />
           ))}
         </MosaicSection>
       </ContentSection>
