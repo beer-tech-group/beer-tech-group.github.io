@@ -23,7 +23,7 @@ import image from "@astrojs/image";
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://beer-tech-group.io',
+  site: 'https://beer-tech-group.github.io',
   integrations: [preact(), mdx(), tailwind(), compress(), robotsTxt(), sitemap({
     changefreq: 'monthly',
     priority: 0.7,
