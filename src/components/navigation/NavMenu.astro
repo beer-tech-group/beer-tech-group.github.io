@@ -38,8 +38,6 @@ const navLinks: NavMenuItem[] = [
 type Props = {
   pageTitle: string;
 };
-
-const { pageTitle } = Astro.props;
 ---
 
 <script>
@@ -62,8 +60,10 @@ const { pageTitle } = Astro.props;
 </script>
 
 <div class="main-nav__menu flex flex-row justify-end">
-  <div class="sm:hidden"><h1>{pageTitle}</h1></div>
-  <div class="hidden sm:block sm:flex sm:flex-row">
+  <!-- <h1 class="overflow-hidden text-ellipsis whitespace-nowrap sm:hidden">
+    {pageTitle}
+  </h1> -->
+  <div class="hidden sm:flex sm:flex-row">
     {
       navLinks.map(({ label, compare, isLast, link }) => {
         return (

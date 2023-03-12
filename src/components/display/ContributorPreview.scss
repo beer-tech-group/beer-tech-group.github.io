@@ -1,0 +1,32 @@
+.modal__inner {
+  @apply bg-white;
+  @apply border-0;
+
+  @apply px-6;
+  @apply sm:px-12;
+  @apply py-10;
+}
+
+.modal__content {
+  @apply p-0;
+  & .content-md {
+    p {
+      @apply leading-7;
+    }
+  }
+}
+
+.modal__close {
+  @apply mt-10;
+  & button {
+    @apply inline-block;
+    @apply w-auto;
+    @apply bg-transparent;
+
+    &:hover,
+    &:focus,
+    &:active {
+      @apply bg-transparent;
+    }
+  }
+}

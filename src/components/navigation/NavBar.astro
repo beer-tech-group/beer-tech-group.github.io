@@ -4,16 +4,17 @@ import NavMenu from "./NavMenu.astro";
 
 type Props = {
   pageTitle: string;
+  sticky?: boolean;
   hasColor?: boolean;
 };
 
-const { pageTitle, hasColor = false } = Astro.props;
+const { pageTitle, sticky = true, hasColor = false } = Astro.props;
 ---
 
 <nav
-  class={`main-nav ${
-    hasColor && "main-nav--colored"
-  } fixed top-0 left-0 right-0 z-[1] h-[80px] px-10 py-3`}
+  class={`main-nav ${hasColor && "main-nav--colored"} ${
+    sticky ? "sticky" : "fixed"
+  } top-0 left-0 right-0 z-[2] h-[80px] px-10 py-3`}
 >
   <NavMenu pageTitle={pageTitle} />
 </nav>

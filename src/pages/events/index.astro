@@ -3,6 +3,12 @@ import { getCollection } from "astro:content";
 
 import BaseLayoutWithTitle from "@layouts/BaseLayoutWithTitle.astro";
 
+export async function getStaticPaths() {
+  return {
+    params: { path: "" },
+  };
+}
+
 const pageTitle = "Events";
 
 const events = await getCollection("events");
@@ -13,7 +19,7 @@ const events = await getCollection("events");
   <ul>
     {
       events.map((event) => (
-        <a href={`/events/${event.slug}`} title={event.data.title}>
+        <a href={`${event.data.permalink}`} title={event.data.title}>
           {event.data.title}
         </a>
       ))

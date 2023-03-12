@@ -1,0 +1,26 @@
+---
+import "./ButtonSimple.scss";
+type Props = {
+  id?: string;
+  className?: string;
+  variant?: "outlined" | "contained";
+  color?: "primary" | "secondary";
+};
+
+const {
+  id,
+  className = "",
+  variant = "outlined",
+  color = "primary",
+} = Astro.props;
+
+const variantClass = `button-simple--${variant}`;
+const colorClass = `button-simple--${variant}-${color}`;
+---
+
+<button
+  class={`button-simple ${variantClass} ${colorClass} ${className}`}
+  id={id}
+>
+  <slot />
+</button>

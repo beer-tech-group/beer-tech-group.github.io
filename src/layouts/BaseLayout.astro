@@ -6,9 +6,14 @@ import "./BaseLayout.scss";
 type Props = {
   pageTitle: string;
   hasNavBarColor?: boolean;
+  isNavBarSticky?: boolean;
 };
 
-const { pageTitle, hasNavBarColor = false } = Astro.props;
+const {
+  pageTitle,
+  isNavBarSticky = true,
+  hasNavBarColor = false,
+} = Astro.props;
 ---
 
 <html lang="it">
@@ -20,18 +25,26 @@ const { pageTitle, hasNavBarColor = false } = Astro.props;
     <link rel="manifest" href="/site.webmanifest" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <title>{`Beer Developer Group - ${pageTitle}`}</title>
+    <title>{`Beer Tech Group - ${pageTitle}`}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;1,400;1,700&family=Oswald:wght@500&display=swap"
       rel="stylesheet"
     />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+    />
   </head>
   <body class="border-box prose">
     <div class="flex h-screen flex-col justify-between">
       <header>
-        <NavBar pageTitle={pageTitle} hasColor={hasNavBarColor} />
+        <NavBar
+          pageTitle={pageTitle}
+          hasColor={hasNavBarColor}
+          sticky={isNavBarSticky}
+        />
         <slot name="before-header" />
       </header>
       <section class="mb-auto px-4 sm:px-10">
