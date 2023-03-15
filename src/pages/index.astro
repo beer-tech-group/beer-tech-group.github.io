@@ -1,11 +1,12 @@
 ---
-import BeerParticlesContainer from "@components/display/BeerParticlesContainer.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
 import moment from "moment";
+import BeerParticlesContainer from "../components/display/BeerParticlesContainer.astro";
 import ContentSection from "../components/display/ContentSection.astro";
 import ContentTitle from "../components/display/ContentTitle.astro";
 import EventPreview from "../components/display/EventPreview.astro";
+import InfoIcon from "../components/display/InfoIcon.astro";
 import MosaicSection from "../components/layouts/MosaicSection.astro";
 
 const pageTitle = "Home";
@@ -86,6 +87,16 @@ const events = (
       agli eventi. All'ingresso dell'evento la tua iscrizione sarà verificata e
       riceverai il token per riscattare la tua birra e il tuo gadget.
     </p>
+    <section
+      class="my-10 flex flex-col flex-wrap items-center justify-center sm:flex-row sm:items-start sm:justify-between"
+    >
+      <InfoIcon icon="book_online">Prenotati all'evento</InfoIcon>
+      <InfoIcon icon="move">Vieni al locale</InfoIcon>
+      <InfoIcon icon="qr_code_scanner">Registra la tua presenza</InfoIcon>
+      <InfoIcon icon="sports_bar">
+        Assisti all'evento e gusta la tua birra
+      </InfoIcon>
+    </section>
   </ContentSection>
 
   <ContentSection>

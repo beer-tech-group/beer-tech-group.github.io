@@ -3,6 +3,7 @@ import "./ButtonSimple.scss";
 type Props = {
   id?: string;
   className?: string;
+  title?: string;
   variant?: "outlined" | "contained";
   color?: "primary" | "secondary";
 };
@@ -10,6 +11,7 @@ type Props = {
 const {
   id,
   className = "",
+  title = "",
   variant = "outlined",
   color = "primary",
 } = Astro.props;
@@ -22,5 +24,5 @@ const colorClass = `button-simple--${variant}-${color}`;
   class={`button-simple ${variantClass} ${colorClass} ${className}`}
   id={id}
 >
-  <slot />
+  <slot>{title}</slot>
 </button>

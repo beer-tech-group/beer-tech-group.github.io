@@ -1,9 +1,5 @@
 import { defineConfig } from 'astro/config';
 
-// https://astro.build/config
-import preact from "@astrojs/preact";
-
-// https://astro.build/config
 import mdx from "@astrojs/mdx";
 
 // https://astro.build/config
@@ -22,9 +18,14 @@ import sitemap from "@astrojs/sitemap";
 import image from "@astrojs/image";
 
 // https://astro.build/config
+import react from "@astrojs/react";
+
+// https://astro.build/config
+
+// https://astro.build/config
 export default defineConfig({
   site: 'https://beer-tech-group.github.io',
-  integrations: [preact(), mdx(), tailwind(), compress(), robotsTxt(), sitemap({
+  integrations: [mdx(), tailwind(), compress(), robotsTxt(), sitemap({
     changefreq: 'monthly',
     priority: 0.7,
     lastmod: new Date(),
@@ -34,5 +35,5 @@ export default defineConfig({
         it: 'it-IT'
       }
     }
-  }), image()]
+  }), image(), react()]
 });

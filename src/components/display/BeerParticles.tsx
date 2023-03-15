@@ -1,5 +1,5 @@
-import type { FunctionComponent, JSX } from "preact";
-import Particles from "preact-particles";
+import { FunctionComponent, useCallback } from "react";
+import { Particles } from "react-particles";
 import { loadFull } from "tsparticles";
 import type { Engine, ISourceOptions } from "tsparticles-engine";
 
@@ -64,12 +64,21 @@ type BeerParticlesProps = {
   height?: string;
 };
 
-const BeerParticles: FunctionComponent<BeerParticlesProps> = ({
+export const BeerParticles: FunctionComponent<BeerParticlesProps> = ({
   height = "100%",
 }: BeerParticlesProps): JSX.Element => {
-  const particlesInit = (main: Engine): void => {
-    loadFull(main);
-  };
+  const particlesInit = useCallback((engine: Engine): Promise<void> => {
+    // you can initialize the tsParticles instance (engine) here, adding custom shapes or presets
+    // this loads the tsparticles package bundle, it's the easiest method for getting everything ready
+    // starting from v2 you can add only the features you need reducing the bundle size
+    return loadFull(engine)
+      .then(() => {
+        console.debug("loaded");
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }, []);
 
   return (
     <Particles

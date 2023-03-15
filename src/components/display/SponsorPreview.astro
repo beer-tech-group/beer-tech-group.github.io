@@ -15,12 +15,11 @@ const { data } = sponsor;
 <section class={`flex flex-col items-center justify-start ${className}`}>
   <a href={data.url} title={data.name} target="_blank">
     <Picture
-      src={data.logo}
-      widths={[200]}
-      aspectRatio="16:9"
-      sizes="200px"
+      src={data.logo.url}
+      widths={[300, 500]}
+      aspectRatio={data.logo.aspectRatio}
+      sizes="300px"
       alt={data.name}
-      class="rounded-full"
     />
   </a>
 </section>

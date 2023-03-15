@@ -9,10 +9,12 @@ import "moment/locale/it";
 import ContentSection from "../../components/display/ContentSection.astro";
 import ContentTitle from "../../components/display/ContentTitle.astro";
 import ContributorPreview from "../../components/display/ContributorPreview.astro";
+import InfoIcon from "../../components/display/InfoIcon.astro";
 import SponsorPreview from "../../components/display/SponsorPreview.astro";
 import MosaicSection from "../../components/layouts/MosaicSection.astro";
 import TaglineIcon from "../../components/layouts/TaglineIcon.astro";
 import SpeechCounter from "../../components/ui/events/SpeechCounter.astro";
+import SpeechRecap from "../../components/ui/events/SpeechRecap.astro";
 moment.locale("it");
 
 import "./Event.scss";
@@ -69,7 +71,7 @@ const bookingOver = moment(data.date).isBefore(moment().endOf("d"));
 
 <BaseLayout pageTitle={data.title}>
   <Tagline slot="after-header">
-    <TaglineIcon icon="sports_bar" />
+    <TaglineIcon icon="sports_bar" slot="icon" />
     <div class="mb-10">
       <h2 class="event-title">{data.title}</h2>
       <h3 class="event-date">
@@ -229,6 +231,56 @@ const bookingOver = moment(data.date).isBefore(moment().endOf("d"));
     <div class="divide-x-2">
       <hr />
     </div>
+  </ContentSection>
+
+  <ContentSection>
+    <ContentTitle>Come partecipare?</ContentTitle>
+    <section
+      class="my-10 flex flex-col flex-wrap items-center justify-center sm:flex-row sm:items-start sm:justify-between"
+    >
+      <InfoIcon icon="book_online">
+        <a href={data.invitationLink}>Prenotati</a> online
+      </InfoIcon>
+      <InfoIcon icon="move">Vieni al locale</InfoIcon>
+      <InfoIcon icon="qr_code_scanner">Registra la tua presenza</InfoIcon>
+      <InfoIcon icon="sports_bar">
+        Assisti all'evento e gusta la tua birra
+      </InfoIcon>
+    </section>
+  </ContentSection>
+
+  <ContentSection>
+    <div class="divide-x-2">
+      <hr />
+    </div>
+  </ContentSection>
+
+  <ContentSection>
+    <section
+      class="flex flex-col flex-wrap items-center justify-center sm:flex-row sm:items-start sm:justify-evenly"
+    >
+      <SpeechRecap icon="schedule" title="Quando">
+        <p class="first-letter:uppercase">
+          {moment(data.date).format("dddd DD MMMM YYYY, HH:mm")}
+        </p>
+      </SpeechRecap>
+      <SpeechRecap icon="location_on" title="Dove">
+        <p>
+          {
+            data.locationLink ? (
+              <a href={data.locationLink} target="_blank">
+                {data.location}
+              </a>
+            ) : (
+              data.location
+            )
+          }
+        </p>
+        <p>
+          {data.address}
+        </p>
+      </SpeechRecap>
+    </section>
   </ContentSection>
 
   <ContentSection className="my-24 text-center">

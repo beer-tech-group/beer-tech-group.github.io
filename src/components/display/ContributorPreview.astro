@@ -1,7 +1,7 @@
 ---
 import { Picture } from "@astrojs/image/components";
-import { Modal } from "accessible-astro-components";
 import type { CollectionEntry } from "astro:content";
+import AppModal from "../feedback/AppModal";
 import ButtonSimple from "../input/ButtonSimple.astro";
 import "./ContributorPreview.scss";
 
@@ -11,13 +11,12 @@ type Props = {
   refId?: string;
 };
 
-const { person, refId = "contributor", className = "" } = Astro.props;
+const { person, className = "" } = Astro.props;
 
 const { Content } = await person.render();
 
-const { data, id } = person;
+const { data } = person;
 
-const cleanId = `${refId}_${id.replace(".mdx", "")}`;
 ---
 
 <section
@@ -39,19 +38,39 @@ const cleanId = `${refId}_${id.replace(".mdx", "")}`;
     <h4 class="font-normal italic">{data.role}</h4>
     {
       data.noBio !== true && (
-        <ButtonSimple
-          color="secondary"
-          variant="contained"
-          id={cleanId}
-          className="mt-3"
-        >
-          Bio
-        </ButtonSimple>
+        <AppModal client:only="react">
+          <ButtonSimple
+            title="Bio"
+            color="secondary"
+            variant="contained"
+            className="mt-3"
+            slot="buttonTrigger" // <--- magic happens here
+          />
+          <div>
+            <section class="mb-10 flex w-full flex-col items-center justify-center">
+              <Picture
+                src={data.image}
+                widths={[200, 250]}
+                aspectRatio="1:1"
+                sizes="(max-width: 800px) 200px, 250px"
+                class="mb-5 rounded-md"
+                alt={data.name}
+              />
+              <h3 class="text-xl">{data.name}</h3>
+              <h4 class={`${data.business || "hidden"} font-normal italic`}>
+                {data.business}
+              </h4>
+            </section>
+            <section class="content-md" >
+              <Content />
+            </section>
+          </div>
+        </AppModal>
       )
     }
   </section>
 </section>
-
+<!-- 
 {
   data.noBio !== true && (
     <Modal class="contributor" triggerId={cleanId} closeText="Chiudi">
@@ -74,4 +93,4 @@ const cleanId = `${refId}_${id.replace(".mdx", "")}`;
       </section>
     </Modal>
   )
-}
+} -->
