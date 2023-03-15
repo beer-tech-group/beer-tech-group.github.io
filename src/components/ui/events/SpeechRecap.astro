@@ -1,0 +1,20 @@
+---
+type Props = {
+  icon: string;
+  title: string;
+};
+
+const { icon, title } = Astro.props;
+---
+
+<div
+  class="mb-5 flex max-w-[250px] flex-row items-baseline justify-start md:mb-0 md:max-w-none"
+>
+  <span class="material-symbols-outlined mr-2">{icon}</span>
+  <div>
+    <h3>{title}</h3>
+    <section>
+      <slot />
+    </section>
+  </div>
+</div>

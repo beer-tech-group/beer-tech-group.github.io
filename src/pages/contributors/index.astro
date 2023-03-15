@@ -4,7 +4,6 @@ import ContentSection from "../../components/display/ContentSection.astro";
 import ContentTitle from "../../components/display/ContentTitle.astro";
 import ContributorPreview from "../../components/display/ContributorPreview.astro";
 import MosaicSection from "../../components/layouts/MosaicSection.astro";
-
 import Tagline from "../../components/layouts/Tagline.astro";
 import TaglineIcon from "../../components/layouts/TaglineIcon.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
@@ -68,7 +67,7 @@ const mentors: CollectionEntry<"contributors">[] = (
 
 <BaseLayout pageTitle={pageTitle}>
   <Tagline slot="after-header">
-    <TaglineIcon icon="partner_exchange" />
+    <TaglineIcon icon="partner_exchange" slot="icon" />
     <div class="mb-10">
       <h2>Contributori</h2>
       <h4>Le persone che contribuiscono al Beer Tech Group</h4>

@@ -38,7 +38,10 @@ const contributorCollection = defineCollection({
 const sponsorCollection = defineCollection({
   schema: z.object({
     name: z.string(),
-    logo: z.string(),
+    logo: z.object({
+      url: z.string(),
+      aspectRatio: z.custom<`${number}:${number}`>().optional().default("16:9"),
+    }),
     url: z.string(),
     permalink: z.string(),
     draft: z.boolean().optional(),
