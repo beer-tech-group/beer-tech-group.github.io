@@ -6,6 +6,6 @@ interface AppConfig {
 
 export const CONFIG: AppConfig = {
   group: {
-    name: import.meta.env.SITE_NAME,
+    name: "Beer Tech Group",
   },
 };
