@@ -1,31 +1,147 @@
 ---
 import NavBar from "@components/navigation/NavBar.astro";
+import { SEO, TwitterCardType } from "astro-seo";
+import { CONFIG } from "../config";
 import BaseFooter from "./BaseFooter.astro";
+
 import "./BaseLayout.scss";
+
+type OpenGraphProps = {
+  basic: {
+    title: string;
+    type: string;
+    image: string;
+    url?: string;
+  };
+  optional?: {
+    audio?: string;
+    description?: string;
+    determiner?: string;
+    locale?: string;
+    localeAlternate?: string[];
+    siteName?: string;
+    video?: string;
+  };
+  image?: {
+    url?: string;
+    secureUrl?: string;
+    type?: string;
+    width?: number;
+    height?: number;
+    alt?: string;
+  };
+  article?: {
+    publishedTime?: string;
+    modifiedTime?: string;
+    expirationTime?: string;
+    authors?: string[];
+    section?: string;
+    tags?: string[];
+  };
+};
+
+export type TwitterSEOProps = {
+  card?: TwitterCardType;
+  site?: string;
+  creator?: string;
+  title?: string;
+  description?: string;
+  image?: string;
+  imageAlt?: string;
+};
 
 type Props = {
   pageTitle: string;
+  seo: {
+    description: string;
+    title: string;
+    image: string;
+    imageAlt: string;
+    type: "website" | "article" | "event";
+    og: {
+      title: string;
+    };
+    twitter: {
+      card: TwitterCardType;
+    };
+    tags?: string[];
+    nofollow?: boolean;
+    noindex?: boolean;
+  };
   hasNavBarColor?: boolean;
   isNavBarSticky?: boolean;
 };
 
 const {
   pageTitle,
+  seo,
   isNavBarSticky = true,
   hasNavBarColor = false,
 } = Astro.props;
+
+const generateOpenGraphProps = (): OpenGraphProps => {
+  let props: OpenGraphProps = {
+    basic: {
+      title: seo.og.title,
+      type: seo.type,
+      image: new URL(seo.image, Astro.url).href,
+      url: Astro.url.href,
+    },
+    optional: {
+      description: seo.description,
+      siteName: CONFIG.group.name,
+      locale: "it",
+    },
+    image: {
+      alt: seo.imageAlt,
+      url: new URL(seo.image, Astro.url).href,
+    },
+    article: {
+      tags: seo.tags ?? [],
+    },
+  };
+
+  return props;
+};
+
+const generateTwitterProps = (): TwitterSEOProps => {
+  let props: TwitterSEOProps = {
+    card: seo.twitter.card,
+    title: seo.title,
+    description: seo.description,
+    image: new URL(seo.image, Astro.url).href,
+    imageAlt: seo.imageAlt,
+    site: CONFIG.group.name,
+    creator: "@beertechgroup",
+  };
+
+  if (props.image) {
+    props.image = new URL(props.image, Astro.url).href;
+  }
+
+  return props;
+};
 ---
 
 <html lang="it">
   <head>
-    <meta charset="utf-8" />
+    <SEO
+      title={pageTitle}
+      titleTemplate={` %s - ${CONFIG.group.name}`}
+      titleDefault={`${CONFIG.group.name}`}
+      description={seo.description}
+      charset="utf-8"
+      openGraph={generateOpenGraphProps()}
+      twitter={generateTwitterProps()}
+      nofollow={seo.nofollow ?? false}
+      noindex={seo.noindex ?? false}
+    />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <link rel="manifest" href="/site.webmanifest" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <title>{`Beer Tech Group - ${pageTitle}`}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link

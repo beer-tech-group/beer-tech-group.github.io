@@ -1,8 +1,9 @@
 ---
 title: "#1 Tech and Beer"
-address: Via Castrofilippo, 20 - Palermo, Italy
-location: Ballarak Magione
-locationLink: https://www.facebook.com/Ballarak.Magione/?locale=it_IT
+location: 
+    name: Ballarak Magione
+    address: Via Castrofilippo, 20 - Palermo, Italy
+    link: https://www.facebook.com/Ballarak.Magione/?locale=it_IT
 date: "2023-04-12 19:30"
 tags: ["android", "web", "gradle", "kotlin", "backend", "frontend"]
 mode: "In person"
@@ -11,15 +12,19 @@ speakers: ['francesco-bonni', 'ilker-aslan', 'francesca-motisi']
 mentors: ['francesco-bonni', 'francesca-motisi']
 sponsors: ['cloudmind']
 invitationLink: https://eventbrite.test
+seo:
+    description: "Ospiti della storica birreria Ballarak, il Beer Tech Group è orgoglioso di dare il via al primo Tech and Beer, insieme a Cloudmind. Al via con tre speech e due mentors."
+    keyworkds: ['speech', 'gradle', 'kotlin', 'astro','francesco-bonni', 'ilker-aslan', 'francesca-motisi', 'cloudmind' ]
 permalink: /events/1-tech-and-beer
 slug: 1-tech-and-beer
 ---
 import ContentTitle from '../../components/display/ContentTitle.astro';
 import SpeechTitle from '../../components/ui/events/SpeechTitle.astro';
+import {CONFIG} from '../../config.ts';
 
 
 <ContentTitle>Dettagli</ContentTitle>
-<p class="text-center mb-10">Ospiti della storica birreria **Ballarak**, il **Beer Tech Group** è orgoglioso di dare il via al primo *Tech and Beer*, insieme a **Cloudmind** e a tutti voi. E tu ci sarai?</p>
+<p class="text-center mb-10">Ospiti della storica birreria **Ballarak**, il **{CONFIG.group.name}** è orgoglioso di dare il via al primo *Tech and Beer*, insieme a **Cloudmind** e a tutti voi. E tu ci sarai?</p>
 
 <ContentTitle>Agenda</ContentTitle>
 
@@ -34,7 +39,7 @@ Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
 
 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
 
-<SpeechTitle>Primo approccio ad Astro: Beer Tech Group Site</SpeechTitle>
+<SpeechTitle>Primo approccio ad Astro: {CONFIG.group.name} Site</SpeechTitle>
 #### Francesca Motisi
 
-Alle prese con il "nuovo" framework **Astro**: tra nuove regole, poco tempo e grande flessibilità, una intro sul framework, le prime primpressioni e una panoramica sulle potenzialità di questo nuovo tool sulla piazza; oltre che un caso d'uso reale: il sito del Beer Tech Group.
+Alle prese con il "nuovo" framework **Astro**: tra nuove regole, poco tempo e grande flessibilità, una intro sul framework, le prime primpressioni e una panoramica sulle potenzialità di questo nuovo tool sulla piazza; oltre che un caso d'uso reale: il sito del {CONFIG.group.name}.

@@ -6,6 +6,7 @@ import ContributorPreview from "../../components/display/ContributorPreview.astr
 import MosaicSection from "../../components/layouts/MosaicSection.astro";
 import Tagline from "../../components/layouts/Tagline.astro";
 import TaglineIcon from "../../components/layouts/TaglineIcon.astro";
+import { CONFIG } from "../../config";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 
 export async function getStaticPaths() {
@@ -65,12 +66,35 @@ const mentors: CollectionEntry<"contributors">[] = (
   ) as CollectionEntry<"contributors">[];
 ---
 
-<BaseLayout pageTitle={pageTitle}>
+<BaseLayout
+  pageTitle={pageTitle}
+  seo={{
+    title: `Contributori del ${CONFIG.group.name}`,
+    description: `Chi ha contributito alla creazione del ${CONFIG.group.name} e lo porta attivamente avanti`,
+    tags: [
+      "beer",
+      "tech",
+      "group",
+      "contributors",
+      "speakers",
+      ...founders.map((f) => f.data.name),
+    ],
+    type: "website",
+    image: "/logo.jpg",
+    imageAlt: "Contributors image",
+    og: {
+      title: `Le persone che contribuiscono al ${CONFIG.group.name}`,
+    },
+    twitter: {
+      card: "summary",
+    },
+  }}
+>
   <Tagline slot="after-header">
     <TaglineIcon icon="partner_exchange" slot="icon" />
     <div class="mb-10">
       <h2>Contributori</h2>
-      <h4>Le persone che contribuiscono al Beer Tech Group</h4>
+      <h4>Le persone che contribuiscono al {CONFIG.group.name}</h4>
     </div>
   </Tagline>
 

@@ -4,7 +4,7 @@
 
 ## 🚀 Project Structure
 
-```
+```sh
 /
 ├── public/
 ├── src/
@@ -26,8 +26,21 @@ All commands are run from the root of the project, from a terminal:
 | :--------------------- | :----------------------------------------------- |
 | `npm install`          | Installs dependencies                            |
 | `npm run dev`          | Starts local dev server at `localhost:3000`      |
-| `npm run build`        | Build your production site to `./dist/`          |
-| `npm run build:tsc`    | Build with type checking your production site to `./dist/`          |
+| `npm run build`    | Build with type checking your production site to `./dist/`          |
 | `npm run preview`      | Preview your build locally, before deploying     |
 | `npm run astro ...`    | Run CLI commands like `astro add`, `astro check` |
 | `npm run astro --help` | Get help using the Astro CLI                     |
+
+## Run Firebase emulator
+
+In order to run and test Site with firebase emulator, install firebase cli and emulators ([Doc](https://firebase.google.com/docs/emulator-suite)), then run:
+
+```sh
+firebase emulators:start
+```
+
+and then serve:
+
+```sh
+firebase serve --only hosting
+```

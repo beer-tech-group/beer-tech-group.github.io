@@ -4,9 +4,11 @@ import { defineCollection, z } from "astro:content";
 const eventCollection = defineCollection({
   schema: z.object({
     title: z.string(),
-    address: z.string(),
-    location: z.string(),
-    locationLink: z.string().optional(),
+    location: z.object({
+      name: z.string(),
+      address: z.string(),
+      link: z.string().optional(),
+    }),
     date: z.string(),
     mode: z.enum(["In person", "Virtual"]),
     type: z.enum(["Conference", "Tech Talk", "Workshop", "Networking"]),
@@ -18,6 +20,11 @@ const eventCollection = defineCollection({
     soldout: z.boolean().optional(),
     tags: z.array(z.string()),
     permalink: z.string(),
+    seo: z.object({
+      title: z.string().optional(),
+      description: z.string(),
+      keywords: z.array(z.string()).default([]),
+    }),
     draft: z.boolean().optional(),
   }),
 });
