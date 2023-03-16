@@ -1,7 +1,6 @@
 ---
 import NavBar from "@components/navigation/NavBar.astro";
 import { SEO, TwitterCardType } from "astro-seo";
-import { CONFIG } from "../config";
 import BaseFooter from "./BaseFooter.astro";
 
 import "./BaseLayout.scss";
@@ -89,7 +88,7 @@ const generateOpenGraphProps = (): OpenGraphProps => {
     },
     optional: {
       description: seo.description,
-      siteName: CONFIG.group.name,
+      siteName: "Beer Tech Group",
       locale: "it",
     },
     image: {
@@ -111,7 +110,7 @@ const generateTwitterProps = (): TwitterSEOProps => {
     description: seo.description,
     image: new URL(seo.image, Astro.url).href,
     imageAlt: seo.imageAlt,
-    site: CONFIG.group.name,
+    site: "Beer Tech Group",
     creator: "@beertechgroup",
   };
 
@@ -127,8 +126,8 @@ const generateTwitterProps = (): TwitterSEOProps => {
   <head>
     <SEO
       title={pageTitle}
-      titleTemplate={` %s - ${CONFIG.group.name}`}
-      titleDefault={`${CONFIG.group.name}`}
+      titleTemplate={` %s - Beer Tech Group`}
+      titleDefault={`Beer Tech Group`}
       description={seo.description}
       charset="utf-8"
       openGraph={generateOpenGraphProps()}
