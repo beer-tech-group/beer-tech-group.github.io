@@ -1,8 +1,8 @@
-name: Deploy to Live Channel
+name: Deploy to Preview Channel
 
 on:
   push:
-    branches: [ beta ]
+    branches: [ stage ]
   # Allows you to run this workflow manually from the Actions tab on GitHub.
   workflow_dispatch:
 
@@ -27,5 +27,6 @@ jobs:
         with:
           repoToken: "${{ secrets.GITHUB_TOKEN }}"
           firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_BEER_TECH_GROUP }}"
+          expires: 1d
+          channelId: beta
           projectId: beer-tech-group
-          channelId: stage

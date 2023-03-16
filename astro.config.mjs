@@ -24,7 +24,7 @@ import react from "@astrojs/react";
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://beer-tech-group.github.io',
+  site: 'https://beertechgroup.net',
   integrations: [mdx(), tailwind(), compress(), robotsTxt(), sitemap({
     changefreq: 'monthly',
     priority: 0.7,
