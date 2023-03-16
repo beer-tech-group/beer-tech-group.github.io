@@ -8,6 +8,7 @@ import ContentTitle from "../components/display/ContentTitle.astro";
 import EventPreview from "../components/display/EventPreview.astro";
 import InfoIcon from "../components/display/InfoIcon.astro";
 import MosaicSection from "../components/layouts/MosaicSection.astro";
+import { CONFIG } from "../config";
 
 const pageTitle = "Home";
 
@@ -21,10 +22,26 @@ const events = (
   .slice(0, 3);
 ---
 
-<BaseLayout isNavBarSticky={false} pageTitle={pageTitle}>
+<BaseLayout
+  isNavBarSticky={false}
+  pageTitle={pageTitle}
+  seo={{
+    title: CONFIG.group.name,
+    description: `Il ${CONFIG.group.name} è un gruppo di developer, designer e appassionati di tecnologia, che fanno base a Palermo`,
+    type: "website",
+    image: "/logo.jpg",
+    imageAlt: CONFIG.group.name,
+    og: {
+      title: `Home page of ${CONFIG.group.name}`,
+    },
+    twitter: {
+      card: "summary",
+    },
+  }}
+>
   <BeerParticlesContainer slot="after-header">
     <section class="flex w-full flex-col sm:flex-row sm:justify-between">
-      <h2>Beer Tech Group</h2>
+      <h2>{CONFIG.group.name}</h2>
     </section>
   </BeerParticlesContainer>
 
@@ -55,9 +72,10 @@ const events = (
   <ContentSection>
     <ContentTitle>Chi siamo</ContentTitle>
     <p>
-      Il <strong>Beer Tech Group</strong> è un gruppo di developer, designer e appassionati
-      di tecnologia, che fanno base a Palermo, Italia. Nasce nel 2023 con lo scopo
-      di portare il format <strong>"Tech and Beer"</strong> nel capoluogo siciliano.
+      Il <strong>{CONFIG.group.name}</strong> è un gruppo di developer, designer
+      e appassionati di tecnologia, che fanno base a Palermo, Italia. Nasce nel 2023
+      con lo scopo di portare il format <strong>"Tech and Beer"</strong> nel capoluogo
+      siciliano.
     </p>
     <p>
       Con la volontà di creare una comunità di tecnofili coesa e sempre più

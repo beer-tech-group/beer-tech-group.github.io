@@ -69,7 +69,25 @@ const { Content } = await event.render();
 const bookingOver = moment(data.date).isBefore(moment().endOf("d"));
 ---
 
-<BaseLayout pageTitle={data.title}>
+<BaseLayout
+  pageTitle={data.title}
+  seo={{
+    title: data.seo.title ?? data.title,
+    description: data.seo.description,
+    tags: data.seo.keywords,
+    type: "event",
+    image: "/logo.jpg",
+    imageAlt: data.seo.title ?? data.title,
+    og: {
+      title: `${data.seo.title ?? data.title} - ${moment(data.date).format(
+        "dddd DD MMMM YYYY"
+      )}`,
+    },
+    twitter: {
+      card: "summary",
+    },
+  }}
+>
   <Tagline slot="after-header">
     <TaglineIcon icon="sports_bar" slot="icon" />
     <div class="mb-10">
@@ -78,14 +96,14 @@ const bookingOver = moment(data.date).isBefore(moment().endOf("d"));
         {moment(data.date).format("dddd DD MMMM YYYY, HH:mm")}
       </h3>
       <p class="event-address">
-        {data.address} @
+        {data.location.address} @
         {
-          data.locationLink ? (
-            <a href={data.locationLink} target="_blank">
+          data.location.link ? (
+            <a href={data.location.link} target="_blank">
               {data.location}
             </a>
           ) : (
-            data.location
+            data.location.name
           )
         }
       </p>
@@ -267,17 +285,17 @@ const bookingOver = moment(data.date).isBefore(moment().endOf("d"));
       <SpeechRecap icon="location_on" title="Dove">
         <p>
           {
-            data.locationLink ? (
-              <a href={data.locationLink} target="_blank">
+            data.location.link ? (
+              <a href={data.location.link} target="_blank">
                 {data.location}
               </a>
             ) : (
-              data.location
+              data.location.name
             )
           }
         </p>
         <p>
-          {data.address}
+          {data.location.address}
         </p>
       </SpeechRecap>
     </section>

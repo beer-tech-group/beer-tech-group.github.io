@@ -8,6 +8,7 @@ import MosaicSection from "../../components/layouts/MosaicSection.astro";
 
 import Tagline from "../../components/layouts/Tagline.astro";
 import TaglineIcon from "../../components/layouts/TaglineIcon.astro";
+import { CONFIG } from "../../config";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 
 export async function getStaticPaths() {
@@ -28,12 +29,28 @@ const futureEvents = events.filter((event) =>
 );
 ---
 
-<BaseLayout pageTitle={pageTitle}>
+<BaseLayout
+  pageTitle={pageTitle}
+  seo={{
+    title: `Eventi del ${CONFIG.group.name}`,
+    description: `Raccolta completa di tutti gli eventi del ${CONFIG.group.name}, creata da developer, designer e tech`,
+    tags: ["evento", "palermo", "developer", "designer", "tech", "community"],
+    type: "event",
+    image: "/logo.jpg",
+    imageAlt: `Eventi del ${CONFIG.group.name}`,
+    og: {
+      title: `Gli eventi organizzati dal ${CONFIG.group.name}`,
+    },
+    twitter: {
+      card: "summary",
+    },
+  }}
+>
   <Tagline slot="after-header">
     <TaglineIcon icon="calendar_month" slot="icon" />
     <div class="mb-10">
       <h2>Eventi</h2>
-      <h4>Tutti gli eventi del Beer Tech Group</h4>
+      <h4>Tutti gli eventi del {CONFIG.group.name}</h4>
     </div>
   </Tagline>
   <ContentSection>

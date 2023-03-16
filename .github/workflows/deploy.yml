@@ -2,7 +2,7 @@ name: Deploy to Live Channel
 
 on:
   push:
-    branches: [ beta ]
+    branches: [ prod ]
   # Allows you to run this workflow manually from the Actions tab on GitHub.
   workflow_dispatch:
 
@@ -30,4 +30,4 @@ jobs:
           repoToken: "${{ secrets.GITHUB_TOKEN }}"
           firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_BEER_TECH_GROUP }}"
           projectId: beer-tech-group
-          channelId: stage
+          channelId: live

@@ -20,5 +20,9 @@
     },
     "files.associations": {
         "*.mdx": "markdown"
+    },
+    "yaml.schemas": {
+        "file:///home/mts/.vscode/extensions/atlassian.atlascode-2.10.12/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml",
+        "https://json.schemastore.org/github-workflow.json": "file:///home/mts/Projects/bdg/bdg-blog/.github/workflows/deploy.yml"
     }
 }
