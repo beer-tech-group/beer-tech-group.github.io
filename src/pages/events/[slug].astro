@@ -100,7 +100,7 @@ const bookingOver = moment(data.date).isBefore(moment().endOf("d"));
         {
           data.location.link ? (
             <a href={data.location.link} target="_blank">
-              {data.location}
+              {data.location.name}
             </a>
           ) : (
             data.location.name
@@ -287,7 +287,7 @@ const bookingOver = moment(data.date).isBefore(moment().endOf("d"));
           {
             data.location.link ? (
               <a href={data.location.link} target="_blank">
-                {data.location}
+                {data.location.name}
               </a>
             ) : (
               data.location.name
