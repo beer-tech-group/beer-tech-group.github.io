@@ -1,8 +1,10 @@
 ---
 import BaseLayout from "@layouts/BaseLayout.astro";
+import Icon from "astro-icon";
 import { getCollection } from "astro:content";
 import moment from "moment";
 import BeerParticlesContainer from "../components/display/BeerParticlesContainer.astro";
+import Chip from "../components/display/Chip.astro";
 import ContentSection from "../components/display/ContentSection.astro";
 import ContentTitle from "../components/display/ContentTitle.astro";
 import EventPreview from "../components/display/EventPreview.astro";
@@ -39,8 +41,42 @@ const events = (
   }}
 >
   <BeerParticlesContainer slot="after-header">
-    <section class="flex w-full flex-col sm:flex-row sm:justify-between">
+    <section class="flex w-full flex-col">
       <h2>Beer Tech Group</h2>
+    </section>
+    <section class="mt-20 flex flex-row flex-wrap">
+      <Chip
+        variant="contained"
+        className="h-[50px] w-[50px] !p-0 mr-5 flex flex-col justify-center items-center"
+      >
+        <Icon
+          pack="icon-park-outline"
+          name="telegram"
+          style="height: 30px; width: auto"
+        />
+      </Chip>
+      <Chip
+        variant="contained"
+        className="h-[50px] w-[50px] !p-0 mr-5 flex flex-col justify-center items-center"
+      >
+        <Icon pack="mdi" name="twitter" style="height: 34px; width: auto" />
+      </Chip>
+      <Chip
+        variant="contained"
+        className="h-[50px] w-[50px] !p-0 mr-5 flex flex-col justify-center items-center"
+      >
+        <Icon
+          pack="ri"
+          name="linkedin-fill"
+          style="height: 32px; width: auto"
+        />
+      </Chip>
+      <Chip
+        variant="contained"
+        className="h-[50px] w-[50px] !p-0 flex flex-col justify-center items-center"
+      >
+        <Icon pack="cib" name="meetup" style="height: 30px; width: auto" />
+      </Chip>
     </section>
   </BeerParticlesContainer>
 
