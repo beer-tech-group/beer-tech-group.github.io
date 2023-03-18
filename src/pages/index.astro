@@ -8,6 +8,8 @@ import ContentTitle from "../components/display/ContentTitle.astro";
 import EventPreview from "../components/display/EventPreview.astro";
 import InfoIcon from "../components/display/InfoIcon.astro";
 import MosaicSection from "../components/layouts/MosaicSection.astro";
+import TaglineSocial from "../components/layouts/TaglineSocial.astro";
+import { CONFIG } from "../config";
 
 const pageTitle = "Home";
 
@@ -28,7 +30,7 @@ const events = (
     title: `Beer Tech Group`,
     description: `Il Beer Tech Group è un gruppo di developer, designer e appassionati di tecnologia, che fanno base a Palermo`,
     type: "website",
-    image: "/logo.jpg",
+    image: "/images/logo_yellow.png",
     imageAlt: `Beer Tech Group`,
     og: {
       title: `Home page of Beer Tech Group`,
@@ -38,11 +40,14 @@ const events = (
     },
   }}
 >
-  <BeerParticlesContainer slot="after-header">
-    <section class="flex w-full flex-col sm:flex-row sm:justify-between">
-      <h2>Beer Tech Group</h2>
-    </section>
-  </BeerParticlesContainer>
+  <div slot="after-header">
+    <BeerParticlesContainer>
+      <section class="flex w-full flex-col">
+        <h2>{CONFIG.name}</h2>
+      </section>
+      <TaglineSocial />
+    </BeerParticlesContainer>
+  </div>
 
   <ContentSection>
     <ContentTitle>Prossimi eventi</ContentTitle>

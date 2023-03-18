@@ -1,0 +1,53 @@
+---
+import { CONFIG } from "../../config";
+import ChipContainedSocial from "../display/ChipContainedSocial.astro";
+
+const { linkedin, meetup, telegram, twitter } = CONFIG.social;
+---
+
+<section class="mt-20 flex flex-row flex-wrap gap-5">
+  {
+    telegram && (
+      <ChipContainedSocial
+        link={telegram}
+        kind="Telegram"
+        pack="icon-park-outline"
+        icon="telegram"
+        height={30}
+      />
+    )
+  }
+  {
+    twitter && (
+      <ChipContainedSocial
+        link={twitter}
+        kind="Twitter"
+        pack="mdi"
+        icon="twitter"
+        height={34}
+      />
+    )
+  }
+  {
+    linkedin && (
+      <ChipContainedSocial
+        link={linkedin}
+        kind="Linkedin"
+        pack="ri"
+        icon="linkedin-fill"
+        height={32}
+      />
+    )
+  }
+  {
+    meetup && (
+      <ChipContainedSocial
+        link={meetup}
+        kind="Meetup"
+        pack="cib"
+        icon="meetup"
+        height={30}
+      />
+    )
+  }
+</section>

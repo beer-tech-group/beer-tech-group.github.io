@@ -1,0 +1,60 @@
+---
+import { CONFIG } from "../../config";
+import SimpleSocialLink from "../display/SimpleSocialLink.astro";
+
+const { linkedin, meetup, telegram, twitter } = CONFIG.social;
+---
+
+<section class="flex flex-row flex-wrap items-center justify-center gap-2">
+  <SimpleSocialLink
+    link={`mailto:${CONFIG.email}`}
+    kind="Email"
+    pack="ic"
+    icon="baseline-mail"
+    height={28}
+  />
+  {
+    telegram && (
+      <SimpleSocialLink
+        link={telegram}
+        kind="Telegram"
+        pack="ic"
+        icon="round-telegram"
+        height={28}
+      />
+    )
+  }
+  {
+    twitter && (
+      <SimpleSocialLink
+        link={twitter}
+        kind="Twitter"
+        pack="mdi"
+        icon="twitter"
+        height={30}
+      />
+    )
+  }
+  {
+    linkedin && (
+      <SimpleSocialLink
+        link={linkedin}
+        kind="Linkedin"
+        pack="ri"
+        icon="linkedin-fill"
+        height={30}
+      />
+    )
+  }
+  {
+    meetup && (
+      <SimpleSocialLink
+        link={meetup}
+        kind="Meetup"
+        pack="cib"
+        icon="meetup"
+        height={27}
+      />
+    )
+  }
+</section>

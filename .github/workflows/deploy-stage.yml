@@ -8,7 +8,6 @@ on:
 
 permissions:
   contents: read
-  pages: write
   id-token: write
 
 jobs:
@@ -29,6 +28,6 @@ jobs:
         with:
           repoToken: "${{ secrets.GITHUB_TOKEN }}"
           firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_BEER_TECH_GROUP }}"
-          expires: 1d
+          expires: 12h
           channelId: stage
           projectId: beer-tech-group

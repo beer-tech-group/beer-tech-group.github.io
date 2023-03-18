@@ -1,7 +1,13 @@
 ---
+import FooterSocial from "../components/layouts/FooterSocial.astro";
 ---
 
 <div class="mx-5 mt-10 text-center">
-  <p>Bevi responsabilmente | Beer Tech Group</p>
+  <FooterSocial />
+  <div class="my-5 flex flex-col items-center justify-center gap-2 sm:flex-row">
+    <span>Bevi responsabilmente</span><span class="hidden sm:inline-block"
+      >|</span
+    ><span>Beer Tech Group</span>
+  </div>
   <p>Made with ❤️ 🍺 and <a href="https://astro.build/">Astro</a></p>
 </div>
