@@ -38,6 +38,9 @@ const allMentorsBySlug = [
   ...new Set(events.map((event) => event.data.mentors || []).flat()),
 ];
 
+// Unique list of designers
+const allDesignersBySlug = ["federica-cutrera"];
+
 // Fetch all speakers info from Contributors collection, ordered by name desc
 const speakers: CollectionEntry<"contributors">[] = (
   await Promise.all(
@@ -63,6 +66,19 @@ const mentors: CollectionEntry<"contributors">[] = (
   .sort((a, b) =>
     (a?.data.name || "").localeCompare(b?.data.name || "")
   ) as CollectionEntry<"contributors">[];
+
+// Fetch all design contributors info from Contributors collection, ordered by name desc
+const designers: CollectionEntry<"contributors">[] = (
+  await Promise.all(
+    allDesignersBySlug.map(
+      async (designer) => await getEntryBySlug("contributors", designer)
+    )
+  )
+)
+  .filter((designer) => designer !== undefined && designer.data.draft !== true)
+  .sort((a, b) =>
+    (a?.data.name || "").localeCompare(b?.data.name || "")
+  ) as CollectionEntry<"contributors">[];
 ---
 
 <BaseLayout
@@ -79,7 +95,7 @@ const mentors: CollectionEntry<"contributors">[] = (
       ...founders.map((f) => f.data.name),
     ],
     type: "website",
-    image: "/logo.jpg",
+    image: "/images/logo_yellow.png",
     imageAlt: "Contributors image",
     og: {
       title: `Le persone che contribuiscono al Beer Tech Group`,
@@ -104,11 +120,21 @@ const mentors: CollectionEntry<"contributors">[] = (
         <ContentTitle>Founders</ContentTitle>
         <MosaicSection>
           {founders.map((founder) => (
-            <ContributorPreview
-              refId="founders"
-              person={founder}
-              className="mb-10 sm:mr-10"
-            />
+            <ContributorPreview refId="founders" person={founder} />
+          ))}
+        </MosaicSection>
+      </ContentSection>
+    )
+  }
+
+  <!-- Designers -->
+  {
+    designers.length > 0 && (
+      <ContentSection>
+        <ContentTitle>Logo, UI & Design</ContentTitle>
+        <MosaicSection>
+          {designers.map((designer) => (
+            <ContributorPreview refId="speakers" person={designer} />
           ))}
         </MosaicSection>
       </ContentSection>
@@ -122,11 +148,7 @@ const mentors: CollectionEntry<"contributors">[] = (
         <ContentTitle>All speakers</ContentTitle>
         <MosaicSection>
           {speakers.map((speaker) => (
-            <ContributorPreview
-              refId="speakers"
-              person={speaker}
-              className="mb-10 sm:mr-10"
-            />
+            <ContributorPreview refId="speakers" person={speaker} />
           ))}
         </MosaicSection>
       </ContentSection>
@@ -140,11 +162,7 @@ const mentors: CollectionEntry<"contributors">[] = (
         <ContentTitle>All mentors</ContentTitle>
         <MosaicSection>
           {mentors.map((mentor) => (
-            <ContributorPreview
-              refId="mentors"
-              person={mentor}
-              className="mb-10 sm:mr-10"
-            />
+            <ContributorPreview refId="mentors" person={mentor} />
           ))}
         </MosaicSection>
       </ContentSection>

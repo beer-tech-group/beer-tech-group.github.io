@@ -1,0 +1,29 @@
+---
+import Icon from "astro-icon";
+import { CONFIG } from "../../config";
+import Chip from "./Chip.astro";
+
+type Props = {
+  link: `https://${string}`;
+  kind: "Telegram" | "Meetup" | "Twitter" | "Linkedin";
+  icon: string;
+  pack: string;
+  height?: number;
+};
+
+const { link, kind, icon, pack, height = 30 } = Astro.props;
+---
+
+<a href={link} aria-label={`${CONFIG.name} ${kind}`} target="_blank">
+  <Chip
+    variant="contained"
+    className="flex h-[50px] w-[50px] flex-col items-center justify-center !p-0"
+  >
+    <Icon
+      pack={pack}
+      name={icon}
+      style={`height: ${height}px; width: auto`}
+      class="hover:fill-gray-500"
+    />
+  </Chip>
+</a>

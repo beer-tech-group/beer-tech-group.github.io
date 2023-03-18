@@ -76,7 +76,7 @@ const bookingOver = moment(data.date).isBefore(moment().endOf("d"));
     description: data.seo.description,
     tags: data.seo.keywords,
     type: "event",
-    image: "/logo.jpg",
+    image: "/images/logo_yellow.png",
     imageAlt: data.seo.title ?? data.title,
     og: {
       title: `${data.seo.title ?? data.title} - ${moment(data.date).format(
@@ -201,11 +201,7 @@ const bookingOver = moment(data.date).isBefore(moment().endOf("d"));
         <MosaicSection>
           {speakers.map((speaker) => (
             <>
-              <ContributorPreview
-                refId="speakers"
-                person={speaker}
-                className="my-5 sm:mx-5"
-              />
+              <ContributorPreview refId="speakers" person={speaker} />
             </>
           ))}
         </MosaicSection>
@@ -220,11 +216,7 @@ const bookingOver = moment(data.date).isBefore(moment().endOf("d"));
         <ContentTitle>Mentors</ContentTitle>
         <MosaicSection>
           {mentors.map((mentor) => (
-            <ContributorPreview
-              refId="mentors"
-              person={mentor}
-              className="my-5 sm:mx-5"
-            />
+            <ContributorPreview refId="mentors" person={mentor} />
           ))}
         </MosaicSection>
       </ContentSection>

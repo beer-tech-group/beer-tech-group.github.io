@@ -1,4 +1,7 @@
 ---
+import { Image } from "@astrojs/image/components";
+import logo from "../../assets/logo_black_nofont.svg";
+import { CONFIG } from "../../config";
 import "./NavBar.scss";
 import NavMenu from "./NavMenu.astro";
 
@@ -12,9 +15,18 @@ const { pageTitle, sticky = true, hasColor = false } = Astro.props;
 ---
 
 <nav
-  class={`main-nav ${hasColor && "main-nav--colored"} ${
-    sticky ? "sticky" : "fixed"
-  } top-0 left-0 right-0 z-[2] h-[80px] px-10 py-3`}
+  class={`main-nav ${hasColor ? "main-nav--colored" : ""} ${
+    sticky ? "sticky" : "absolute"
+  } top-0 left-0 right-0 z-[2] h-[80px] px-10 py-3 flex flex-row justify-between items-center`}
 >
-  <NavMenu pageTitle={pageTitle} />
+  <section class="sticky sm:pl-10">
+    <Image
+      src={logo}
+      width={174}
+      height={174}
+      alt={`${CONFIG.name} Logo Black`}
+      class={`w-[50px] h-[50px] lg:w-[60px] lg:h-[60px]`}
+    />
+  </section>
+  <NavMenu pageTitle={pageTitle} sticky={sticky} />
 </nav>

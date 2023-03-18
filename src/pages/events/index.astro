@@ -35,7 +35,7 @@ const futureEvents = events.filter((event) =>
     description: `Raccolta completa di tutti gli eventi del Beer Tech Group, creata da developer, designer e tech`,
     tags: ["evento", "palermo", "developer", "designer", "tech", "community"],
     type: "event",
-    image: "/logo.jpg",
+    image: "/images/logo_yellow.png",
     imageAlt: `Eventi del Beer Tech Group`,
     og: {
       title: `Gli eventi organizzati dal Beer Tech Group`,
@@ -58,7 +58,7 @@ const futureEvents = events.filter((event) =>
       futureEvents.length > 0 ? (
         <MosaicSection>
           {futureEvents.map((event) => (
-            <EventPreview event={event} className="my-5 sm:mx-5" />
+            <EventPreview event={event} />
           ))}
         </MosaicSection>
       ) : (
@@ -74,7 +74,7 @@ const futureEvents = events.filter((event) =>
         <ContentTitle className="text-left">Eventi Passati</ContentTitle>
         <MosaicSection>
           {pastEvents.map((event) => (
-            <EventPreview event={event} className="my-5 sm:mx-5" />
+            <EventPreview event={event} />
           ))}
         </MosaicSection>
       </ContentSection>

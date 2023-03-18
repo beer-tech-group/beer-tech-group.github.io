@@ -1,18 +1,13 @@
 name: Deploy to Preview Channel
 
 on:
-  push:
-    branches: [ stage ]
-  # Allows you to run this workflow manually from the Actions tab on GitHub.
-  workflow_dispatch:
-
-permissions:
-  contents: read
-  pages: write
-  id-token: write
+  pull_request:
+    # Optionally configure to run only for specific files. For example:
+    # paths:
+    # - "website/**"
 
 jobs:
-  build_and_deploy:
+  build_and_preview:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout your repository using git
@@ -24,11 +19,10 @@ jobs:
           cache: 'npm'
       - run: npm ci
       - run: npm run build
-      - name: Deploy on Stage Firebase
+      - name: Deploy preview on Firebase
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: "${{ secrets.GITHUB_TOKEN }}"
           firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_BEER_TECH_GROUP }}"
-          expires: 12h
-          channelId: stage
+          expires: 1h
           projectId: beer-tech-group

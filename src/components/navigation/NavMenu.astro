@@ -37,7 +37,10 @@ const navLinks: NavMenuItem[] = [
 
 type Props = {
   pageTitle: string;
+  sticky?: boolean;
 };
+
+const { sticky = true } = Astro.props;
 ---
 
 <script>
@@ -59,7 +62,11 @@ type Props = {
     ?.addEventListener("click", closeMenu);
 </script>
 
-<div class="main-nav__menu flex flex-row justify-end">
+<div
+  class={`main-nav__menu flex flex-row justify-end ${
+    sticky ? "" : "fixed right-10"
+  }`}
+>
   <div class="hidden sm:flex sm:flex-row">
     {
       navLinks.map(({ label, compare, isLast, link }) => {
