@@ -1,4 +1,4 @@
-name: Deploy to Preview Channel
+name: Deploy to Stage Channel
 
 on:
   push:
@@ -13,6 +13,9 @@ permissions:
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
+    environment:
+      name: stage
+      url: https://beer-tech-group--stage-25xry7d2.web.app
     steps:
       - name: Checkout your repository using git
         uses: actions/checkout@v3
