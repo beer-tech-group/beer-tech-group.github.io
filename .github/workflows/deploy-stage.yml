@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: stage
-      url: https://beer-tech-group--stage-25xry7d2.web.app
+      url: ${{ steps.deploy_on_firebase.outputs.details_url }}
     steps:
       - name: Checkout your repository using git
         uses: actions/checkout@v3
@@ -27,6 +27,7 @@ jobs:
       - run: npm ci
       - run: npm run build
       - name: Deploy on Stage Firebase
+        id: deploy_on_firebase
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: "${{ secrets.GITHUB_TOKEN }}"
