@@ -12,10 +12,5 @@ export interface AppConfig {
 export const CONFIG: AppConfig = {
   name: "Beer Tech Group",
   email: "beertechgroup@gmail.com",
-  social: {
-    twitter: `https://twitter.com/beertechgroup`,
-    telegram: `https://twitter.com/beertechgroup`,
-    meetup: `https://twitter.com/beertechgroup`,
-    linkedin: `https://twitter.com/beertechgroup`,
-  },
+  social: {},
 };
