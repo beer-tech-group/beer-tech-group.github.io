@@ -6,6 +6,11 @@ on:
     # paths:
     # - "website/**"
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+  
 jobs:
   build_and_preview:
     runs-on: ubuntu-latest
