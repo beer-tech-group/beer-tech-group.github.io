@@ -27,10 +27,13 @@ const AppModal: FC<AppModalProps> = ({
       </div>
       <Dialog open={open} onClose={() => handleClose} className="app-modal">
         {/* The backdrop, rendered as a fixed sibling to the panel container */}
-        <div className="fixed inset-0 bg-black/30" aria-hidden="true" />
+        <div className="fixed inset-0 z-[1] bg-black/30" aria-hidden="true" />
 
         {/* Full-screen scrollable container */}
-        <div className="fixed inset-0 overflow-y-auto" onClick={handleClose}>
+        <div
+          className="fixed inset-0 z-[1] overflow-y-auto"
+          onClick={handleClose}
+        >
           {/* Container to center the panel */}
           <div className="flex min-h-full items-center justify-center p-4">
             {/* The actual dialog panel  */}
