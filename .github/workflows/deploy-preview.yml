@@ -7,10 +7,9 @@ on:
     # - "website/**"
 
 permissions:
-  actions: read
   contents: read
-  security-events: write
-  statuses: write
+  id-token: write
+  checks: write
 
 jobs:
   build_and_preview:
