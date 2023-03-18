@@ -13,6 +13,9 @@ permissions:
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
+    environment:
+      name: production
+      url: https://beertechgroup.net
     steps:
       - name: Checkout your repository using git
         uses: actions/checkout@v3
