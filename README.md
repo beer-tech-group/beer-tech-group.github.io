@@ -44,3 +44,9 @@ and then serve:
 ```sh
 firebase serve --only hosting
 ```
+## Contributors
+<a href="https://github.com/beer-tech-group/beer-tech-group.github.io/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=beer-tech-group/beer-tech-group.github.io" />
+</a>
+
+Made with [contrib.rocks](https://contrib.rocks).
