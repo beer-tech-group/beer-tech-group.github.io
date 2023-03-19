@@ -17,6 +17,16 @@
   a {
     @apply underline;
   }
+
+  ol {
+    @apply list-inside;
+    @apply list-decimal;
+    li {
+      @apply mb-5;
+      @apply ml-5;
+      @apply marker:font-semibold;
+    }
+  }
 }
 
 @layer utilities {
