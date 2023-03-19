@@ -1,0 +1,164 @@
+---
+import ContentSection from "../components/display/ContentSection.astro";
+import ContentTitle from "../components/display/ContentTitle.astro";
+import Tagline from "../components/layouts/Tagline.astro";
+import TaglineIcon from "../components/layouts/TaglineIcon.astro";
+import { CONFIG } from "../config";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const pageTitle = "Codice di condotta";
+---
+
+<BaseLayout
+  pageTitle={pageTitle}
+  seo={{
+    title: `Codice di condotta`,
+    description: `Cosa si aspettano le persone che partecipano nella nostra community`,
+    tags: [
+      "evento",
+      "palermo",
+      "developer",
+      "designer",
+      "tech",
+      "community",
+      "web",
+      "cloud",
+    ],
+    type: "article",
+    image: "/images/logo_yellow.png",
+    imageAlt: `Codice di condotta del Beer Tech Group`,
+    og: {
+      title: `Il codice di condotta della community Beer Tech Group`,
+    },
+    twitter: {
+      card: "summary",
+    },
+  }}
+>
+  <Tagline slot="after-header">
+    <TaglineIcon icon="volunteer_activism" slot="icon" />
+    <div class="mb-10">
+      <h2>Codice di condotta</h2>
+    </div>
+  </Tagline>
+  <ContentSection>
+    <ContentTitle>Introduzione</ContentTitle>
+    <p>
+      {CONFIG.name} è dedicato a fornire un'esperienza di evento inclusiva e priva
+      di molestie per tutti, indipendentemente da identità ed espressione di genere,
+      orientamento sessuale, disabilità, neurodiversità, aspetto fisico, corporatura,
+      etnia, nazionalità, razza, età, religione o altro categoria protetta.
+    </p>
+    <p>
+      Non tolleriamo alcuna forma di molestia nei confronti dei partecipanti
+      all'evento. Prendiamo sul serio le violazioni della nostra politica e
+      risponderemo in modo appropriato.
+    </p>
+  </ContentSection>
+  <ContentSection>
+    <ContentTitle>Policy</ContentTitle>
+    <p>
+      Tutti i partecipanti agli eventi {CONFIG.name} devono attenersi alla seguente
+      policy:
+    </p>
+    <ol class="block">
+      <li class="list-item leading-8">
+        Sii cortese l'uno con l'altro. Vogliamo che l'evento sia un'esperienza
+        eccellente per tutti, indipendentemente da identità ed espressione di
+        genere, orientamento sessuale, disabilità, neurodiversità, aspetto
+        fisico, corporatura, etnia, nazionalità, razza, età, religione o altra
+        categoria protetta. Tratta tutti con rispetto. Partecipa riconoscendo
+        che tutti meritano di essere qui - e ognuno di noi ha il diritto di
+        godersi la nostra esperienza senza timore di molestie, discriminazioni o
+        condiscendenza, palesi o tramite micro-aggressioni. Le battute non
+        dovrebbero sminuire gli altri. Considera cosa stai dicendo e come ti
+        sentiresti se fosse detto a te o su di te.
+      </li>
+      <li class="list-item leading-8">
+        Parla se vedi o senti qualcosa. Le molestie non sono tollerate e hai il
+        potere di impegnarti educatamente quando tu o altri non siete
+        rispettati. La persona che ti fa sentire a disagio potrebbe non essere
+        consapevole di ciò che sta facendo, ed è incoraggiato portare
+        educatamente il suo comportamento alla sua attenzione. Se un
+        partecipante assume comportamenti molesti o scomodi, gli organizzatori
+        dell'evento possono intraprendere qualsiasi azione ritengano opportuna,
+        incluso l'avvertimento o l'espulsione dall'evento senza alcun rimborso.
+        Se vieni molestato o ti senti a disagio, noti che qualcun altro è stato
+        molestato o hai altre preoccupazioni, contatta immediatamente un membro
+        dello staff dell'evento.
+      </li>
+      <li class="list-item leading-8">
+        Le molestie non sono tollerate. Le molestie includono, ma non si
+        limitano a: linguaggio verbale che rafforza le strutture sociali di
+        dominio relative all'identità e all'espressione di genere, orientamento
+        sessuale, disabilità, neurodiversità, aspetto fisico, corporatura,
+        etnia, nazionalità, razza, età, religione o altro categoria; immagini
+        sessuali negli spazi pubblici; intimidazione deliberata; stalking;
+        seguente; fotografie o registrazioni moleste; interruzione prolungata di
+        colloqui o altri eventi; linguaggio verbale offensivo; contatto fisico
+        inappropriato; e sgradite attenzioni sessuali. I partecipanti invitati a
+        interrompere qualsiasi comportamento molesto sono tenuti a conformarsi
+        immediatamente.
+      </li>
+      <li class="list-item leading-8">Essere maggiorenne.</li>
+    </ol>
+  </ContentSection>
+  <ContentSection>
+    <ContentTitle>Scopo</ContentTitle>
+    <p>
+      Questa politica si estende a discorsi, forum, workshop, codelab, social
+      media, feste, conversazioni in corridoio, tutti i partecipanti, partner,
+      sponsor, volontari, personale dell'evento, ecc. {CONFIG.name} si riserva il
+      diritto di rifiutare l'ammissione o rimuovere qualsiasi persona da qualsiasi
+      evento ospitato da {CONFIG.name} in qualsiasi momento a sua esclusiva discrezione.
+      Ciò include, ma non è limitato a, i partecipanti che si comportano in modo
+      disordinato o non rispettano questa politica e i termini e le condizioni qui
+      riportati. Se un partecipante assume comportamenti molesti o scomodi, gli organizzatori
+      dell'evento possono intraprendere qualsiasi azione ritengano opportuna, incluso
+      l'avvertimento o l'espulsione dall'evento.
+    </p>
+    <p>
+      Il nostro personale dell'evento può solitamente essere identificato da
+      distintivi/abbigliamento speciali. La nostra politica di tolleranza zero
+      significa che esamineremo ed esamineremo ogni accusa di violazione delle
+      nostre Linee guida per la community degli eventi e Politica anti-molestie
+      e risponderemo in modo appropriato. Si prega di notare che, pur prendendo
+      sul serio tutte le preoccupazioni sollevate, useremo la nostra discrezione
+      per determinare quando e come dare seguito agli incidenti segnalati e
+      potremmo rifiutarci di intraprendere ulteriori azioni e/o indirizzare il
+      partecipante verso altre risorse per la risoluzione.
+    </p>
+    <p>
+      Il personale dell'evento sarà lieto di aiutare i partecipanti a contattare
+      la sicurezza della sede o le forze dell'ordine locali, fornire
+      accompagnatori o assistere in altro modo coloro che subiscono disagio o
+      molestie per sentirsi al sicuro per tutta la durata dell'evento.
+      Apprezziamo la tua presenza.
+    </p>
+  </ContentSection>
+  <ContentSection>
+    <ContentTitle>Perché questa politica?</ContentTitle>
+    <p>
+      Le molestie agli eventi e nelle comunità online sono purtroppo comuni. La
+      creazione di una politica ufficiale mira a migliorare questo aspetto
+      chiarendo che le molestie nei confronti di chiunque per qualsiasi motivo
+      non sono accettabili all'interno dei nostri eventi e comunità. Questa
+      politica può prevenire le molestie definendo chiaramente le aspettative di
+      comportamento, mira a fornire rassicurazione e incoraggia le persone che
+      hanno avuto brutte esperienze in altri eventi a partecipare a questo.
+    </p>
+  </ContentSection>
+
+  <ContentSection>
+    <ContentTitle>Attenzione</ContentTitle>
+    <p>
+      In alcun modo incentiviamo e appoggiamo l'abuso di alcol. L'alcolismo è
+      una malattia seria e non va sottovalutata in alcuna maniera. Se tu o
+      qualcuno che conosci pensi abbia bisogno di aiuto contatta <a
+        class="underline"
+        href="https://www.salute.gov.it/portale/alcol/dettaglioContenutiAlcol.jsp?lingua=italiano&id=2366&area=alcol&menu=vuoto"
+        >gli organi preposti</a
+      >.
+    </p>
+  </ContentSection>
+</BaseLayout>
