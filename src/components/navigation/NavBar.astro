@@ -19,7 +19,7 @@ const { pageTitle, sticky = true, hasColor = false } = Astro.props;
     sticky ? "sticky" : "absolute"
   } top-0 left-0 right-0 z-[2] h-[80px] px-10 py-3 flex flex-row justify-between items-center`}
 >
-  <section class="sticky sm:pl-10">
+  <section class="sticky z-[-1] sm:pl-10">
     <Image
       src={logo}
       width={174}

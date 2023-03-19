@@ -27,11 +27,11 @@ const AppModal: FC<AppModalProps> = ({
       </div>
       <Dialog open={open} onClose={() => handleClose} className="app-modal">
         {/* The backdrop, rendered as a fixed sibling to the panel container */}
-        <div className="fixed inset-0 z-[1] bg-black/30" aria-hidden="true" />
+        <div className="fixed inset-0 z-[999] bg-black/30" aria-hidden="true" />
 
         {/* Full-screen scrollable container */}
         <div
-          className="fixed inset-0 z-[1] overflow-y-auto"
+          className="fixed inset-0 z-[999] overflow-y-auto"
           onClick={handleClose}
         >
           {/* Container to center the panel */}
