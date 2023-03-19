@@ -2,7 +2,7 @@
 import { CONFIG } from "../../config";
 import SimpleSocialLink from "../display/SimpleSocialLink.astro";
 
-const { linkedin, meetup, telegram, twitter } = CONFIG.social;
+const { linkedin, meetup, telegram, twitter, github } = CONFIG.social;
 ---
 
 <section class="flex flex-row flex-wrap items-center justify-center gap-2">
@@ -13,6 +13,17 @@ const { linkedin, meetup, telegram, twitter } = CONFIG.social;
     icon="baseline-mail"
     height={28}
   />
+  {
+    github && (
+      <SimpleSocialLink
+        link={github}
+        kind="Github"
+        pack="mdi"
+        icon="github"
+        height={27}
+      />
+    )
+  }
   {
     telegram && (
       <SimpleSocialLink
