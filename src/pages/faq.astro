@@ -1,0 +1,97 @@
+---
+import ContentSection from "../components/display/ContentSection.astro";
+import ContentTitle from "../components/display/ContentTitle.astro";
+import Question from "../components/display/Question.astro";
+import Tagline from "../components/layouts/Tagline.astro";
+import TaglineIcon from "../components/layouts/TaglineIcon.astro";
+import { CONFIG } from "../config";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const pageTitle = "FAQs";
+---
+
+<BaseLayout
+  pageTitle={pageTitle}
+  seo={{
+    title: `FAQs`,
+    description: `Le domande più frequenti, dubbi e curiosità sul ${CONFIG.name} e i suoi eventi`,
+    tags: [
+      "evento",
+      "palermo",
+      "developer",
+      "designer",
+      "tech",
+      "community",
+      "web",
+      "cloud",
+      "faq",
+    ],
+    type: "website",
+    image: "/images/logo_yellow.png",
+    imageAlt: `FAQ del Beer Tech Group`,
+    og: {
+      title: `Domande più frequenti sul ${CONFIG.name} e i suoi eventi`,
+    },
+    twitter: {
+      card: "summary",
+    },
+  }}
+>
+  <Tagline slot="after-header">
+    <TaglineIcon icon="quiz" slot="icon" />
+    <div class="mb-10">
+      <h2>FAQs</h2>
+      <h4>Dubbi e domande frequenti</h4>
+    </div>
+  </Tagline>
+  <ContentSection>
+    <ContentTitle>Community</ContentTitle>
+    <Question>
+      <div slot="question">Cosa è il {CONFIG.name}?</div>
+      <div slot="answer">Il {CONFIG.name}</div>
+    </Question>
+    <Question>
+      <div slot="question">Perché lo fate?</div>
+      <div slot="answer">Il {CONFIG.name}</div>
+    </Question>
+    <Question>
+      <div slot="question">Come pagate gli eventi?</div>
+      <div slot="answer">
+        Ricorriamo a degli sponsor oppure finanziamo da soli i nostri eventi.
+        Non siamo un azienda, ma solo una community.
+      </div>
+    </Question>
+    <Question>
+      <div slot="question">Cosa ci guadagnate?</div>
+      <div slot="answer">
+        Assolutamente niente. I partecipanti al {CONFIG.name} sono tutti volontari
+        e lavorano al progetto nel loro tempo libero.
+      </div>
+    </Question>
+  </ContentSection>
+  <ContentSection>
+    <ContentTitle>Eventi</ContentTitle>
+    <Question>
+      <div slot="question">
+        Cosa è il <span class="italic">Tech and Beer</span>?
+      </div>
+      <div slot="answer">Il {CONFIG.name}</div>
+    </Question>
+    <Question>
+      <div slot="question">Come faccio a partecipare ad un evento?</div>
+      <div slot="answer">Il {CONFIG.name}</div>
+    </Question>
+    <Question>
+      <div slot="question">Devo acquistare un biglietto per partecipare?</div>
+      <div slot="answer">Il {CONFIG.name}</div>
+    </Question>
+    <Question>
+      <div slot="question">Ci sono dei gadget?</div>
+      <div slot="answer">Il {CONFIG.name}</div>
+    </Question>
+    <Question>
+      <div slot="question">Sono minorenne, posso partecipare?</div>
+      <div slot="answer">Il {CONFIG.name}</div>
+    </Question>
+  </ContentSection>
+</BaseLayout>
