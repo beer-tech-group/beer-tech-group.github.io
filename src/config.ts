@@ -6,11 +6,14 @@ export interface AppConfig {
     telegram?: `https://${string}`;
     meetup?: `https://${string}`;
     linkedin?: `https://${string}`;
+    github?: `https://${string}`;
   };
 }
 
 export const CONFIG: AppConfig = {
   name: "Beer Tech Group",
   email: "beertechgroup@gmail.com",
-  social: {},
+  social: {
+    github: `https://github.com/beer-tech-group`,
+  },
 };
