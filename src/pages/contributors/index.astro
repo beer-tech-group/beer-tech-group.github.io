@@ -1,5 +1,5 @@
 ---
-import { CollectionEntry, getCollection, getEntryBySlug } from "astro:content";
+import { CollectionEntry,getCollection,getEntryBySlug } from "astro:content";
 import ContentSection from "../../components/display/ContentSection.astro";
 import ContentTitle from "../../components/display/ContentTitle.astro";
 import ContributorPreview from "../../components/display/ContributorPreview.astro";
@@ -14,7 +14,7 @@ export async function getStaticPaths() {
   };
 }
 
-const pageTitle = "Contributori";
+const pageTitle = "Contributors";
 
 // Fetch all founders, sorted by name desc
 const founders: CollectionEntry<"contributors">[] = (
@@ -108,7 +108,7 @@ const designers: CollectionEntry<"contributors">[] = (
   <Tagline slot="after-header">
     <TaglineIcon icon="partner_exchange" slot="icon" />
     <div class="mb-10">
-      <h2>Contributori</h2>
+      <h2>Contributors</h2>
       <h4>Le persone che contribuiscono al Beer Tech Group</h4>
     </div>
   </Tagline>
