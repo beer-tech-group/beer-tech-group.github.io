@@ -3,12 +3,13 @@ import Chip from "@components/display/Chip.astro";
 import ButtonLink from "@components/input/ButtonLink.astro";
 import Tagline from "@components/layouts/Tagline.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
-import { CollectionEntry, getCollection, getEntryBySlug } from "astro:content";
+import { CollectionEntry,getCollection,getEntryBySlug } from "astro:content";
 import moment from "moment";
 import "moment/locale/it";
 import ContentSection from "../../components/display/ContentSection.astro";
 import ContentTitle from "../../components/display/ContentTitle.astro";
 import ContributorPreview from "../../components/display/ContributorPreview.astro";
+import GalleryWall from "../../components/display/GalleryWall.astro";
 import InfoIcon from "../../components/display/InfoIcon.astro";
 import SponsorPreview from "../../components/display/SponsorPreview.astro";
 import MosaicSection from "../../components/layouts/MosaicSection.astro";
@@ -238,60 +239,71 @@ const bookingOver = moment(data.date).isBefore(moment().endOf("d"));
   }
 
   <ContentSection>
-    <div class="divide-x-2">
-      <hr />
-    </div>
+    <GalleryWall src={`events/${event.slug}`} >
+    <ContentTitle slot="title">Guarda come è andata</ContentTitle>
+    </GalleryWall>
   </ContentSection>
 
-  <ContentSection>
-    <ContentTitle>Come partecipare?</ContentTitle>
-    <section
-      class="my-10 flex flex-col flex-wrap items-center justify-center sm:flex-row sm:items-start sm:justify-between"
-    >
-      <InfoIcon icon="book_online">
-        <a href={data.invitationLink}>Prenotati</a> online
-      </InfoIcon>
-      <InfoIcon icon="move">Vieni al locale</InfoIcon>
-      <InfoIcon icon="qr_code_scanner">Registra la tua presenza</InfoIcon>
-      <InfoIcon icon="sports_bar">
-        Assisti all'evento e gusta la tua birra
-      </InfoIcon>
-    </section>
-  </ContentSection>
+  {
+    !bookingOver && (
 
-  <ContentSection>
-    <div class="divide-x-2">
-      <hr />
-    </div>
-  </ContentSection>
-
-  <ContentSection>
-    <section
-      class="flex flex-col flex-wrap items-center justify-center sm:flex-row sm:items-start sm:justify-evenly"
-    >
-      <SpeechRecap icon="schedule" title="Quando">
-        <p class="first-letter:uppercase">
-          {moment(data.date).format("dddd DD MMMM YYYY, HH:mm")}
-        </p>
-      </SpeechRecap>
-      <SpeechRecap icon="location_on" title="Dove">
-        <p>
-          {
-            data.location.link ? (
-              <a href={data.location.link} target="_blank">
-                {data.location.name}
-              </a>
-            ) : (
-              data.location.name
-            )
-          }
-        </p>
-        <p>
-          {data.location.address}
-        </p>
-      </SpeechRecap>
-    </section>
-  </ContentSection>
+      <ContentSection>
+        <div class="divide-x-2">
+          <hr />
+        </div>
+      </ContentSection>
+    
+      <ContentSection>
+        <ContentTitle>Come partecipare?</ContentTitle>
+        <section
+          class="my-10 flex flex-col flex-wrap items-center justify-center sm:flex-row sm:items-start sm:justify-between"
+        >
+          <InfoIcon icon="book_online">
+            <a href={data.invitationLink}>Prenotati</a> online
+          </InfoIcon>
+          <InfoIcon icon="move">Vieni al locale</InfoIcon>
+          <InfoIcon icon="qr_code_scanner">Registra la tua presenza</InfoIcon>
+          <InfoIcon icon="sports_bar">
+            Assisti all'evento e gusta la tua birra
+          </InfoIcon>
+        </section>
+      </ContentSection>
+    
+      <ContentSection>
+        <div class="divide-x-2">
+          <hr />
+        </div>
+      </ContentSection>
+    
+      <ContentSection>
+        <section
+          class="flex flex-col flex-wrap items-center justify-center sm:flex-row sm:items-start sm:justify-evenly"
+        >
+          <SpeechRecap icon="schedule" title="Quando">
+            <p class="first-letter:uppercase">
+              {moment(data.date).format("dddd DD MMMM YYYY, HH:mm")}
+            </p>
+          </SpeechRecap>
+          <SpeechRecap icon="location_on" title="Dove">
+            <p>
+              {
+                data.location.link ? (
+                  <a href={data.location.link} target="_blank">
+                    {data.location.name}
+                  </a>
+                ) : (
+                  data.location.name
+                )
+              }
+            </p>
+            <p>
+              {data.location.address}
+            </p>
+          </SpeechRecap>
+        </section>
+      </ContentSection>
+    )
+  }
 
   <ContentSection className="my-24 text-center">
     {

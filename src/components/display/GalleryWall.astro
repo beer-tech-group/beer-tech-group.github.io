@@ -1,0 +1,38 @@
+---
+import sizeOf from "image-size";
+import fs from "node:fs/promises";
+import type { Photo } from "react-photo-album";
+import Gallery from "./Gallery";
+
+type Props = {
+  src: string;
+  hideIfEmpty?: boolean;
+};
+
+const { src: srcFolder, hideIfEmpty = true } = Astro.props;
+
+const basePath = `${process.cwd()}/public/images/${srcFolder}`;
+
+let images: Photo[] = [];
+try {
+  images = (
+    await fs.readdir(basePath, {
+      encoding: "utf8",
+      withFileTypes: true,
+    })
+  ).map((path) => {
+    const dimensions = sizeOf(`${basePath}/${path.name}`);
+    return {
+      src: `/images/${srcFolder}/${path.name}`,
+      key: path.name,
+      width: dimensions.width || 0,
+      height: dimensions.height || 0,
+    };
+  });
+} catch (err) {}
+---
+
+<section class="gallery">
+  {hideIfEmpty && images.length > 0 && <slot name="title" />}
+  <Gallery client:visible photos={images} />
+</section>
