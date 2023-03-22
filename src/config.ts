@@ -15,5 +15,8 @@ export const CONFIG: AppConfig = {
   email: "beertechgroup@gmail.com",
   social: {
     github: `https://github.com/beer-tech-group`,
+    telegram: `https://t.me/beertechgroup`,
+    twitter: `https://twitter.com/beertechgroup`,
+    linkedin: `https://www.linkedin.com/company/beer-tech-group`
   },
 };
