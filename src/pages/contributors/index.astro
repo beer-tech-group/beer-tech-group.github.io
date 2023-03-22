@@ -1,5 +1,5 @@
 ---
-import { CollectionEntry,getCollection,getEntryBySlug } from "astro:content";
+import { CollectionEntry, getCollection, getEntryBySlug } from "astro:content";
 import ContentSection from "../../components/display/ContentSection.astro";
 import ContentTitle from "../../components/display/ContentTitle.astro";
 import ContributorPreview from "../../components/display/ContributorPreview.astro";
@@ -39,7 +39,10 @@ const allMentorsBySlug = [
 ];
 
 // Unique list of designers
-const allDesignersBySlug = ["federica-cutrera"];
+const allDesignersBySlug = ["federica-cutrera", "floriana-benigno"];
+
+// Unique list of copywriters
+const allCopywriters = ["monica-diliberti"];
 
 // Fetch all speakers info from Contributors collection, ordered by name desc
 const speakers: CollectionEntry<"contributors">[] = (
@@ -76,6 +79,21 @@ const designers: CollectionEntry<"contributors">[] = (
   )
 )
   .filter((designer) => designer !== undefined && designer.data.draft !== true)
+  .sort((a, b) =>
+    (a?.data.name || "").localeCompare(b?.data.name || "")
+  ) as CollectionEntry<"contributors">[];
+
+// Fetch all copywriters contributors info from Contributors collection, ordered by name desc
+const copywriters: CollectionEntry<"contributors">[] = (
+  await Promise.all(
+    allCopywriters.map(
+      async (copywriter) => await getEntryBySlug("contributors", copywriter)
+    )
+  )
+)
+  .filter(
+    (copywriter) => copywriter !== undefined && copywriter.data.draft !== true
+  )
   .sort((a, b) =>
     (a?.data.name || "").localeCompare(b?.data.name || "")
   ) as CollectionEntry<"contributors">[];
@@ -135,6 +153,20 @@ const designers: CollectionEntry<"contributors">[] = (
         <MosaicSection>
           {designers.map((designer) => (
             <ContributorPreview refId="speakers" person={designer} />
+          ))}
+        </MosaicSection>
+      </ContentSection>
+    )
+  }
+
+  <!-- Copywriters -->
+  {
+    copywriters.length > 0 && (
+      <ContentSection>
+        <ContentTitle>Copywriters</ContentTitle>
+        <MosaicSection>
+          {copywriters.map((copywriter) => (
+            <ContributorPreview refId="speakers" person={copywriter} />
           ))}
         </MosaicSection>
       </ContentSection>
