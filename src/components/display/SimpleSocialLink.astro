@@ -4,7 +4,14 @@ import { CONFIG } from "../../config";
 
 type Props = {
   link: `https://${string}` | `mailto:${string}`;
-  kind: "Telegram" | "Meetup" | "Twitter" | "Linkedin" | "Email" | "Github";
+  kind:
+    | "Telegram"
+    | "Meetup"
+    | "Twitter"
+    | "Linkedin"
+    | "Email"
+    | "Github"
+    | "Instagram";
   icon: string;
   pack: string;
   height?: number;

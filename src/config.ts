@@ -7,6 +7,7 @@ export interface AppConfig {
     meetup?: `https://${string}`;
     linkedin?: `https://${string}`;
     github?: `https://${string}`;
+    instagram?: `https://${string}`;
   };
 }
 
@@ -17,6 +18,7 @@ export const CONFIG: AppConfig = {
     github: `https://github.com/beer-tech-group`,
     telegram: `https://t.me/beertechgroup`,
     twitter: `https://twitter.com/beertechgroup`,
-    linkedin: `https://www.linkedin.com/company/beer-tech-group`
+    linkedin: `https://www.linkedin.com/company/beer-tech-group`,
+    instagram: `https://www.instagram.com/beertechgroup/`,
   },
 };

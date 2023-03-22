@@ -2,7 +2,8 @@
 import { CONFIG } from "../../config";
 import SimpleSocialLink from "../display/SimpleSocialLink.astro";
 
-const { linkedin, meetup, telegram, twitter, github } = CONFIG.social;
+const { linkedin, meetup, telegram, twitter, github, instagram } =
+  CONFIG.social;
 ---
 
 <section class="flex flex-row flex-wrap items-center justify-center gap-2">
@@ -13,17 +14,6 @@ const { linkedin, meetup, telegram, twitter, github } = CONFIG.social;
     icon="baseline-mail"
     height={28}
   />
-  {
-    github && (
-      <SimpleSocialLink
-        link={github}
-        kind="Github"
-        pack="mdi"
-        icon="github"
-        height={27}
-      />
-    )
-  }
   {
     telegram && (
       <SimpleSocialLink
@@ -51,8 +41,8 @@ const { linkedin, meetup, telegram, twitter, github } = CONFIG.social;
       <SimpleSocialLink
         link={linkedin}
         kind="Linkedin"
-        pack="ri"
-        icon="linkedin-fill"
+        pack="mdi"
+        icon="linkedin"
         height={30}
       />
     )
@@ -64,6 +54,28 @@ const { linkedin, meetup, telegram, twitter, github } = CONFIG.social;
         kind="Meetup"
         pack="cib"
         icon="meetup"
+        height={27}
+      />
+    )
+  }
+  {
+    instagram && (
+      <SimpleSocialLink
+        link={instagram}
+        kind="Instagram"
+        pack="ph"
+        icon="instagram-logo-fill"
+        height={28}
+      />
+    )
+  }
+  {
+    github && (
+      <SimpleSocialLink
+        link={github}
+        kind="Github"
+        pack="mdi"
+        icon="github"
         height={27}
       />
     )
