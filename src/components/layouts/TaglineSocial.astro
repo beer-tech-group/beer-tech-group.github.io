@@ -2,7 +2,8 @@
 import { CONFIG } from "../../config";
 import ChipContainedSocial from "../display/ChipContainedSocial.astro";
 
-const { linkedin, meetup, telegram, twitter, github } = CONFIG.social;
+const { linkedin, meetup, telegram, twitter, github, instagram } =
+  CONFIG.social;
 ---
 
 <section class="mt-20 flex flex-row flex-wrap gap-5">
@@ -11,8 +12,8 @@ const { linkedin, meetup, telegram, twitter, github } = CONFIG.social;
       <ChipContainedSocial
         link={telegram}
         kind="Telegram"
-        pack="icon-park-outline"
-        icon="telegram"
+        pack="fa-brands"
+        icon="telegram-plane"
         height={30}
       />
     )
@@ -46,6 +47,17 @@ const { linkedin, meetup, telegram, twitter, github } = CONFIG.social;
         kind="Meetup"
         pack="cib"
         icon="meetup"
+        height={30}
+      />
+    )
+  }
+  {
+    instagram && (
+      <ChipContainedSocial
+        link={instagram}
+        kind="Instagram"
+        pack="mdi"
+        icon="instagram"
         height={30}
       />
     )
