@@ -183,7 +183,7 @@ const generateTwitterProps = (): TwitterSEOProps => {
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;1,400;1,700&family=Oswald:wght@500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Cutive+Mono&family=Montserrat:ital,wght@0,400;0,700;1,400;1,700&family=Oswald:wght@500&display=swap"
       rel="stylesheet"
     />
     <link
@@ -198,6 +198,10 @@ const generateTwitterProps = (): TwitterSEOProps => {
     ></script>
   </head>
   <body class="border-box prose">
+    <!-- Insert this script at the bottom of the HTML, but before you use any Firebase services -->
+    <script src="/__/firebase/8.10.1/firebase-app.js" defer></script>
+    <script src="/__/firebase/8.10.1/firebase-analytics.js" defer></script>
+    <script src="/__/firebase/init.js" defer></script>
     <div class="flex h-screen flex-col justify-between">
       <header>
         <NavBar

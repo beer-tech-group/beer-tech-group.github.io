@@ -20,13 +20,15 @@ module.exports = {
 			fontFamily: {
 				'montserrat': ['Montserrat'],
 				'oswald': ['Oswald'],
+				'cutive': ['Cutive Mono', 'monospace']
 			},
 			height: {
 				'half-screen': '50vh'
 			}
 		},
 		fontFamily: {
-			sans: ['Montserrat', ...fontFamily.sans]
+			sans: ['Montserrat', ...fontFamily.sans],
+			mono: ['Cutive Mono', ...fontFamily.mono]
 		},
 		fontSize: {
 			sm: '1rem',
