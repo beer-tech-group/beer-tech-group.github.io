@@ -3,8 +3,8 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-    "dev": "astro check --watch & astro dev",
-    "start": "astro check --watch & astro dev",
+    "dev": "astro dev",
+    "start": "astro dev",
     "build": "astro check && tsc --noEmit && astro build",
     "preview": "astro preview",
     "astro": "astro"
