@@ -3,8 +3,8 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-    "dev": "astro check --watch & astro dev",
-    "start": "astro check --watch & astro dev",
+    "dev": "astro dev",
+    "start": "astro dev",
     "build": "astro check && tsc --noEmit && astro build",
     "preview": "astro preview",
     "astro": "astro"
@@ -23,11 +23,14 @@
     "astro-icon": "^0.8.0",
     "astro-robots-txt": "^0.4.0",
     "astro-seo": "^0.7.1",
+    "image-size": "^1.0.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-particles": "^2.9.3",
+    "react-photo-album": "^2.0.3",
     "tailwindcss": "^3.2.7",
-    "tsparticles": "^2.9.3"
+    "tsparticles": "^2.9.3",
+    "yet-another-react-lightbox": "^3.0.0"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.9",
