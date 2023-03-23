@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "site": "beer-tech-group",
     "public": "dist",
     "ignore": [
       "firebase.json",
@@ -10,7 +11,9 @@
   "emultators": {
     "hosting": {
       "port": 5000,
-      "host": "0.0.0.0"
+      "host": "0.0.0.0",
+      "public": "dist",
+      "site": "beer-tech-group"
     }
   }
 }

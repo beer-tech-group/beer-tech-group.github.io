@@ -39,12 +39,10 @@ In order to run and test Site with firebase emulator, install firebase cli and e
 firebase emulators:start
 ```
 
-and then serve:
+**NB**: If you want to test firebase reserved URLs, you should use emulators.
 
-```sh
-firebase serve --only hosting
-```
 ## Contributors
+
 <a href="https://github.com/beer-tech-group/beer-tech-group.github.io/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=beer-tech-group/beer-tech-group.github.io" />
 </a>
