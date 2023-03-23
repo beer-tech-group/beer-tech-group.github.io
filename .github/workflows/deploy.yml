@@ -33,3 +33,19 @@ jobs:
           firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_BEER_TECH_GROUP }}"
           projectId: beer-tech-group
           channelId: live
+  telegram_notify:
+    runs-on: ubuntu-latest
+    needs: build_and_deploy
+    environment:
+      name: production
+    steps:
+      - name: Send deploy notification
+        uses: appleboy/telegram-action@0.0.3
+        with:
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          to: ${{ secrets.TELEGRAM_TO }}
+          message: |
+            ${{ github.actor }} release a new version of website:
+            Commit message: ${{ github.event.commits[0].message }}
+            
+            See changes: https://beertechgroup.net
