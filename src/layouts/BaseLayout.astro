@@ -201,10 +201,13 @@ const generateTwitterProps = (): TwitterSEOProps => {
     <!-- Insert this script at the bottom of the HTML, but before you use any Firebase services -->
     <script src="/__/firebase/8.10.1/firebase-app.js" defer></script>
     <script src="/__/firebase/8.10.1/firebase-analytics.js" defer></script>
-    <script src="/__/firebase/init.js" defer></script>
-    <script type="module">
-      const appCheck = firebase.appCheck();
-      appCheck.activate('6LezKyglAAAAADkwbot5tqKAqAF-FmKYMo69ZGz_', true);
+    <script src="/__/firebase/8.10.1/firebase-app-check.js" defer></script>
+    <script type="text/javascript">
+      fetch("/__/firebase/init.json").then(async (response) => {
+        firebase.initializeApp(await response.json());
+        const appCheck = firebase.appCheck();
+        appCheck.activate("6LezKyglAAAAADkwbot5tqKAqAF-FmKYMo69ZGz_", true);
+      });
     </script>
     <div class="flex h-screen flex-col justify-between">
       <header>
