@@ -202,6 +202,10 @@ const generateTwitterProps = (): TwitterSEOProps => {
     <script src="/__/firebase/8.10.1/firebase-app.js" defer></script>
     <script src="/__/firebase/8.10.1/firebase-analytics.js" defer></script>
     <script src="/__/firebase/init.js" defer></script>
+    <script type="module">
+      const appCheck = firebase.appCheck();
+      appCheck.activate('6LezKyglAAAAADkwbot5tqKAqAF-FmKYMo69ZGz_', true);
+    </script>
     <div class="flex h-screen flex-col justify-between">
       <header>
         <NavBar
