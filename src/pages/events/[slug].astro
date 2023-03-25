@@ -10,12 +10,13 @@ import ContentSection from "../../components/display/ContentSection.astro";
 import ContentTitle from "../../components/display/ContentTitle.astro";
 import ContributorPreview from "../../components/display/ContributorPreview.astro";
 import GalleryWall from "../../components/display/GalleryWall.astro";
-import InfoIcon from "../../components/display/InfoIcon.astro";
 import SponsorPreview from "../../components/display/SponsorPreview.astro";
 import MosaicSection from "../../components/layouts/MosaicSection.astro";
 import TaglineIcon from "../../components/layouts/TaglineIcon.astro";
+import AnimatedInfoIcons from "../../components/ui/AnimatedInfoIcons";
 import SpeechCounter from "../../components/ui/events/SpeechCounter.astro";
 import SpeechRecap from "../../components/ui/events/SpeechRecap.astro";
+
 moment.locale("it");
 
 import "./Event.scss";
@@ -255,18 +256,7 @@ const bookingOver = moment(data.date).isBefore(moment().endOf("d"));
     
       <ContentSection>
         <ContentTitle>Come partecipare?</ContentTitle>
-        <section
-          class="my-10 flex flex-col flex-wrap items-center justify-center sm:flex-row sm:items-start sm:justify-between"
-        >
-          <InfoIcon icon="book_online">
-            <a href={data.invitationLink}>Prenotati</a> online
-          </InfoIcon>
-          <InfoIcon icon="move">Vieni al locale</InfoIcon>
-          <InfoIcon icon="qr_code_scanner">Registra la tua presenza</InfoIcon>
-          <InfoIcon icon="sports_bar">
-            Assisti all'evento e gusta la tua birra
-          </InfoIcon>
-        </section>
+        <AnimatedInfoIcons client:visible linkEvent={data.invitationLink}/>
       </ContentSection>
     
       <ContentSection>

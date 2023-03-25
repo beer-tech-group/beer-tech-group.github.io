@@ -2,45 +2,6 @@
 import FooterSocial from "../components/layouts/FooterSocial.astro";
 ---
 
-<script>
-  function setCookie(name: string, value: string) {
-    const d = new Date();
-    d.setTime(d.getTime() + 365 * 24 * 60 * 60 * 1000);
-    const expires = "expires=" + d.toUTCString();
-    document.cookie = name + "=" + value + ";" + expires + ";path=/";
-  }
-
-  function getCookie(cookieName: string) {
-    let name = cookieName + "=";
-    const decodedCookie = decodeURIComponent(document.cookie);
-    let ca = decodedCookie.split(";");
-
-    for (let i = 0; i < ca.length; i++) {
-      let c = ca[i] || "";
-      while (c.charAt(0) == " ") {
-        c = c.substring(1);
-      }
-      if (c.indexOf(name) == 0) {
-        return c.substring(name.length, c.length);
-      }
-    }
-    return "";
-  }
-  const hasCookie = getCookie("i_like_beers_and_cookie");
-
-  const cookieBox = document.getElementById("cookie-box");
-  const cookieCloseButton = document.getElementById("close-cookie-box");
-
-  if (hasCookie !== "" && hasCookie === "accept") {
-    cookieBox?.remove();
-  } else {
-    cookieCloseButton?.addEventListener("click", function () {
-      setCookie("i_like_beers_and_cookie", "accept");
-      cookieBox?.remove();
-    });
-  }
-</script>
-
 <div class="mx-5 mt-10 text-center">
   <FooterSocial />
   <div class="my-5 flex flex-col items-center justify-center gap-2 sm:flex-row">
@@ -70,3 +31,41 @@ import FooterSocial from "../components/layouts/FooterSocial.astro";
     <button id="close-cookie-box" class="no-underline">[x] Chiudi</button>
   </div>
 </div>
+
+<script is:inline>
+  function setCookie(name, value) {
+    const d = new Date();
+    d.setTime(d.getTime() + 365 * 24 * 60 * 60 * 1000);
+    const expires = "expires=" + d.toUTCString();
+    document.cookie = name + "=" + value + ";" + expires + ";path=/";
+  }
+
+  function getCookie(cookieName) {
+    let name = cookieName + "=";
+    const decodedCookie = decodeURIComponent(document.cookie);
+    let ca = decodedCookie.split(";");
+
+    for (let i = 0; i < ca.length; i++) {
+      let c = ca[i] || "";
+      while (c.charAt(0) == " ") {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return "";
+  }
+  const hasCookie = getCookie("i_like_beers_and_cookie");
+
+  const cookieCloseButton = document.getElementById("close-cookie-box");
+
+  if (hasCookie !== "" && hasCookie === "accept") {
+    document.getElementById("cookie-box")?.remove();
+  } else {
+    cookieCloseButton?.addEventListener("click", function () {
+      setCookie("i_like_beers_and_cookie", "accept");
+      document.getElementById("cookie-box")?.remove();
+    });
+  }
+</script>
