@@ -1,0 +1,166 @@
+---
+import ContentSection from "../components/display/ContentSection.astro";
+import ContentTitle from "../components/display/ContentTitle.astro";
+import SimpleSocialLink from "../components/display/SimpleSocialLink.astro";
+import Tagline from "../components/layouts/Tagline.astro";
+import TaglineIcon from "../components/layouts/TaglineIcon.astro";
+import { CONFIG } from "../config";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ContactUsForm from "../layouts/ContactUsForm";
+
+const pageTitle = "Contattaci";
+
+const { linkedin, meetup, telegram, twitter, github, instagram } =
+  CONFIG.social;
+---
+
+<BaseLayout
+  pageTitle={pageTitle}
+  seo={{
+    title: `Contattaci`,
+    description: `Vuoi proporti come sponsor o speaker, o semplicemente contattarci? Scopri come`,
+    tags: [
+      "speaker",
+      "palermo",
+      "developer",
+      "designer",
+      "mentor",
+      "contatta",
+      "web",
+    ],
+    type: "contact",
+    image: "/images/logo_yellow.png",
+    imageAlt: `Contatta il Beer Tech Group`,
+    og: {
+      title: `Vuoi proporti come sponsor o speaker, o semplicemente contattarci? Scopri come`,
+    },
+    twitter: {
+      card: "summary",
+    },
+  }}
+>
+  <Tagline slot="after-header">
+    <TaglineIcon icon="contact_support" slot="icon" />
+    <div class="mb-10">
+      <h2>Contattaci</h2>
+      <h4>Vuoi diventare sponsor o proporre uno speech? Contattaci</h4>
+    </div>
+  </Tagline>
+  <ContentSection>
+    <ContentTitle>Scrivici</ContentTitle>
+    <ContactUsForm client:only="react" />
+  </ContentSection>
+  <ContentSection>
+    <ContentTitle>I nostri contatti</ContentTitle>
+    <p>Puoi contattarci tramite i nostri social o inviando una email:</p>
+    <ul class="block">
+      <li class="list-item leading-8">
+        <SimpleSocialLink
+          link={`mailto:${CONFIG.email}`}
+          kind="Email"
+          pack="ic"
+          icon="baseline-mail"
+          height={28}
+        >
+          beertechgroup@gmail.com
+        </SimpleSocialLink>
+      </li>
+      {
+        telegram && (
+          <li class="list-item leading-8">
+            <SimpleSocialLink
+              link={telegram}
+              kind="Telegram"
+              pack="ic"
+              icon="round-telegram"
+              iconColor="#0088cc"
+              height={28}
+            >
+              Beer Tech Group
+            </SimpleSocialLink>
+          </li>
+        )
+      }
+      {
+        twitter && (
+          <li class="list-item leading-8">
+            <SimpleSocialLink
+              link={twitter}
+              kind="Twitter"
+              pack="mdi"
+              icon="twitter"
+              iconColor="#1da1f2"
+              height={30}
+            >
+              @beertechgroup
+            </SimpleSocialLink>
+          </li>
+        )
+      }
+      {
+        linkedin && (
+          <li class="list-item leading-8">
+            <SimpleSocialLink
+              link={linkedin}
+              kind="Linkedin"
+              pack="mdi"
+              icon="linkedin"
+              iconColor="#004182"
+              height={30}
+            >
+              Beer Tech Group
+            </SimpleSocialLink>
+          </li>
+        )
+      }
+      {
+        meetup && (
+          <li class="list-item leading-8">
+            <SimpleSocialLink
+              link={meetup}
+              kind="Meetup"
+              pack="cib"
+              icon="meetup"
+              iconColor="#e0393e"
+              height={27}
+            >
+              Beer Tech Group
+            </SimpleSocialLink>
+          </li>
+        )
+      }
+      {
+        instagram && (
+          <li class="list-item leading-8">
+            <SimpleSocialLink
+              link={instagram}
+              kind="Instagram"
+              pack="ph"
+              icon="instagram-logo-fill"
+              iconColor="#c13584"
+              height={28}
+            >
+              @beertechgroup
+            </SimpleSocialLink>
+          </li>
+        )
+      }
+      {
+        github && (
+          <li class="list-item leading-8">
+            <SimpleSocialLink
+              link={github}
+              kind="Github"
+              pack="mdi"
+              icon="github"
+              iconColor="#333"
+              height={27}
+            >
+              beer-tech-group
+            </SimpleSocialLink>
+          </li>
+        )
+      }
+    </ul>
+  </ContentSection>
+</BaseLayout>

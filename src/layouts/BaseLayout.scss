@@ -27,6 +27,51 @@
       @apply marker:font-semibold;
     }
   }
+
+  input:not([type="submit"]),
+  textarea,
+  select {
+    @apply border-slate-300;
+    @apply border-[2px];
+    @apply rounded-xl;
+    @apply py-4;
+    @apply px-8;
+    @apply mr-2;
+    @apply mb-3;
+    @apply block;
+    @apply align-top;
+    @apply transition-all;
+    @apply outline-none;
+    @apply w-full;
+    @apply md:w-[300px];
+
+    @apply focus:border-slate-900;
+    @apply hover:border-slate-900;
+  }
+
+  textarea {
+    @apply w-full;
+  }
+
+  .form-area {
+    @apply block;
+    @apply align-top;
+    @apply mb-5;
+
+    & .hint {
+      @apply text-slate-700;
+      @apply italic;
+    }
+    &.error-state {
+      & .hint {
+        @apply text-red-700;
+      }
+    }
+  }
+
+  input[type="submit"] {
+    @apply cursor-pointer;
+  }
 }
 
 @layer utilities {

@@ -13,17 +13,35 @@ type Props = {
     | "Github"
     | "Instagram";
   icon: string;
+  iconColor?: string;
   pack: string;
   height?: number;
 };
 
-const { link, kind, icon, pack, height = 28 } = Astro.props;
+const { link, kind, icon, pack, height = 28, iconColor = "#000" } = Astro.props;
 ---
 
-<a href={link} aria-label={`${CONFIG.name} ${kind}`} target="_blank">
+<style lang="scss" define:vars={{ iconColor }}>
+  [astro-icon] {
+    color: var(--iconColor);
+    fill: var(--iconColor);
+  }
+</style>
+<a
+  href={link}
+  aria-label={`${CONFIG.name} ${kind}`}
+  target="_blank"
+  class="inline-flex flex-row items-center justify-start"
+>
   <section
-    class="flex h-[40px] w-[40px] flex-col items-center justify-center !p-0"
+    class={`inline-flex h-[40px] w-[40px] flex-col items-center justify-center !p-0 `}
   >
-    <Icon pack={pack} name={icon} style={`height: ${height}px; width: auto`} />
+    <Icon
+      pack={pack}
+      name={icon}
+      class="icon"
+      style={`height: ${height}px; width: auto;`}
+    />
   </section>
+  <slot />
 </a>
