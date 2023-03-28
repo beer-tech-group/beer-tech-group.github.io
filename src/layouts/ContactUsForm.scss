@@ -1,0 +1,59 @@
+.select__control {
+  @apply border-slate-300;
+  @apply border-[2px] #{!important};
+  @apply rounded-xl #{!important};
+  @apply py-3;
+  @apply px-8;
+  @apply mr-2;
+  @apply mb-3;
+  @apply block;
+  @apply align-top;
+  @apply transition-all;
+  @apply outline-none;
+  @apply w-full;
+  @apply shadow-none #{!important};
+
+  @apply focus:border-slate-900 #{!important};
+  @apply hover:border-slate-900 #{!important};
+
+  &--is-focused {
+    @apply border-slate-900 #{!important};
+  }
+}
+
+.select__option {
+  @apply transition-all;
+
+  @apply hover:bg-[#faebd7] #{!important};
+  @apply focus:bg-[#faebd7] #{!important};
+  &--is-selected {
+    @apply bg-secondary #{!important};
+    @apply text-black #{!important};
+  }
+}
+
+input[type="submit"] {
+  @apply inline-block;
+  @apply py-3;
+  @apply px-6;
+  @apply border-solid;
+  @apply transition-all;
+  @apply duration-200;
+  @apply ease-in;
+  @apply font-oswald;
+  @apply uppercase;
+
+  @apply border-2;
+  @apply rounded-full;
+
+  @apply border-secondary;
+  @apply bg-secondary;
+  @apply text-primary;
+  @apply transition-all;
+  @apply duration-200;
+  @apply ease-in;
+
+  &:hover {
+    @apply bg-white;
+  }
+}

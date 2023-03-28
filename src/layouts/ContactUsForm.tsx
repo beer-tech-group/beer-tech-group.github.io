@@ -1,67 +1,93 @@
 import type { FC } from "react";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import Select from "react-select";
+import "./ContactUsForm.scss";
+
+type SelectOption = {
+  value: string;
+  label: string;
+};
+
+const options: SelectOption[] = [
+  { value: "sponsor", label: "Voglio diventare sponsor" },
+  { value: "other", label: "Altro" },
+];
 
 type ContactUsFormFields = {
-  example: string;
-  exampleRequired: string;
-  area: string;
+  name: string;
+  email: string;
+  body: string;
+  area: SelectOption;
 };
 
 type ContactUsFormProps = {};
 
-const options = [
-  { value: "sponsor", label: "Voglio diventare sponsor" },
-  { value: "speech", label: "Voglio proporre uno speech" },
-  { value: "other", label: "Altro" },
-];
-
 const ContactUsForm: FC<ContactUsFormProps> = ({}): JSX.Element => {
   const {
+    control,
     register,
     handleSubmit,
-    watch,
     formState: { errors },
-  } = useForm<ContactUsFormFields>();
+  } = useForm<ContactUsFormFields>({
+    defaultValues: {
+      area: options[0] as SelectOption,
+      name: "",
+      email: "",
+      body: "",
+    },
+  });
   const onSubmit: SubmitHandler<ContactUsFormFields> = (data) =>
     console.log(data);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="form-area">
-        <Select
-          className="basic-single"
-          classNamePrefix="select"
-          defaultValue={options[0]}
-          isClearable={false}
-          options={options}
+        <span className="hint">Cosa vuoi dirci?</span>
+        <Controller
+          name="area"
+          control={control}
+          render={({ field }) => (
+            <Select
+              className="basic-single"
+              classNamePrefix="select"
+              isClearable={false}
+              options={options}
+              {...field}
+            />
+          )}
         />
       </div>
-      <div className="form-area">
-        {/* register your input into the hook by invoking the "register" function */}
-        <input defaultValue="test" {...register("example")} />
-        <span className="hint">You should type someting</span>
-      </div>
-
-      <div
-        className={`form-area ${errors.exampleRequired ? "error-state" : ""}`}
-      >
-        {/* include validation with required or other standard HTML validation rules */}
+      <div className={`form-area ${errors.name ? "error-state" : ""}`}>
+        <span className="hint">Come ti chiami?</span>
         <input
-          placeholder="Test me"
-          {...register("exampleRequired", { required: true })}
+          placeholder="Jane Doe"
+          {...register("name", { required: true })}
         />
         {/* errors will return when field validation fails  */}
-        {errors.exampleRequired && (
-          <span className="hint">This field is required</span>
-        )}
+        {errors.email && <span className="hint">Campo obbligatorio</span>}
+      </div>
+
+      <div className={`form-area ${errors.email ? "error-state" : ""}`}>
+        <span className="hint">Dove ti possiamo contattare?</span>
+        <input
+          placeholder="jane.doe@email.com"
+          {...register("email", { required: true })}
+        />
+        {/* errors will return when field validation fails  */}
+        {errors.email && <span className="hint">Campo obbligatorio</span>}
       </div>
 
       <div className="form-area">
-        <textarea placeholder="write" {...register("area")}></textarea>
+        <textarea
+          placeholder="Scrivici"
+          {...register("body")}
+          rows={6}
+        ></textarea>
       </div>
 
-      <input type="submit" />
+      <div className="flex flex-row items-center justify-center">
+        <input type="submit" />
+      </div>
     </form>
   );
 };

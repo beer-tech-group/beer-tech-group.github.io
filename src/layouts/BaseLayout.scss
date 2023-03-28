@@ -66,6 +66,11 @@
       & .hint {
         @apply text-red-700;
       }
+      & input:not([type="submit"]),
+      & textarea,
+      & select {
+        @apply border-red-700;
+      }
     }
   }
 
