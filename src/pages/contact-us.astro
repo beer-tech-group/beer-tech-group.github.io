@@ -6,13 +6,15 @@ import Tagline from "../components/layouts/Tagline.astro";
 import TaglineIcon from "../components/layouts/TaglineIcon.astro";
 import { CONFIG } from "../config";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import ContactUsForm from "../layouts/ContactUsForm";
+import ContactUsWrapper from "../layouts/ContactUsWrapper";
 
 const pageTitle = "Contattaci";
 
 const { linkedin, meetup, telegram, twitter, github, instagram } =
   CONFIG.social;
 ---
+
+<script src="https://www.google.com/recaptcha/api.js"></script>
 
 <BaseLayout
   pageTitle={pageTitle}
@@ -48,7 +50,7 @@ const { linkedin, meetup, telegram, twitter, github, instagram } =
   </Tagline>
   <ContentSection>
     <ContentTitle>Scrivici</ContentTitle>
-    <ContactUsForm client:only="react" />
+    <ContactUsWrapper client:only="react" />
   </ContentSection>
   <ContentSection>
     <ContentTitle>I nostri contatti</ContentTitle>
