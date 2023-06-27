@@ -21,3 +21,6 @@ firebase-debug.log*
 # macOS-specific files
 .DS_Store
 .firebase
+
+# IDE
+.idea/
