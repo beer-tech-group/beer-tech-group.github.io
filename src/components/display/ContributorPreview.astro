@@ -16,7 +16,6 @@ const { person, className = "" } = Astro.props;
 const { Content } = await person.render();
 
 const { data } = person;
-
 ---
 
 <section
@@ -44,7 +43,7 @@ const { data } = person;
             color="secondary"
             variant="contained"
             className="mt-3"
-            slot="buttonTrigger" // <--- magic happens here
+            slot="buttonTrigger"
           />
           <div>
             <section class="mb-10 flex w-full flex-col items-center justify-center">
@@ -61,7 +60,7 @@ const { data } = person;
                 {data.business}
               </h4>
             </section>
-            <section class="content-md" >
+            <section class="content-md">
               <Content />
             </section>
           </div>

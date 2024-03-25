@@ -7,6 +7,7 @@ import ContentSection from "../components/display/ContentSection.astro";
 import ContentTitle from "../components/display/ContentTitle.astro";
 import EventPreview from "../components/display/EventPreview.astro";
 import InfoIcon from "../components/display/InfoIcon.astro";
+import PartnerPreview from "../components/display/PartnerPreview.astro";
 import MosaicSection from "../components/layouts/MosaicSection.astro";
 import TaglineSocial from "../components/layouts/TaglineSocial.astro";
 import { CONFIG } from "../config";
@@ -21,6 +22,10 @@ const events = (
 )
   .sort((a, b) => moment(a.data.date).diff(b.data.date))
   .slice(0, 3);
+
+const partners = (await getCollection("partners")).sort(
+  (a, b) => a.data.sortingIndex - b.data.sortingIndex
+);
 ---
 
 <BaseLayout
@@ -119,6 +124,20 @@ const events = (
       </InfoIcon>
     </section>
   </ContentSection>
+
+  <!-- Partners -->
+  {
+    partners.length > 0 && (
+      <ContentSection>
+        <ContentTitle>Partners</ContentTitle>
+        <section class="flex flex-col flex-wrap items-center justify-center gap-10 sm:flex-row sm:items-center sm:justify-center">
+          {partners.map((partner) => (
+            <PartnerPreview partner={partner} />
+          ))}
+        </section>
+      </ContentSection>
+    )
+  }
 
   <ContentSection>
     <div class="divide-x-2">

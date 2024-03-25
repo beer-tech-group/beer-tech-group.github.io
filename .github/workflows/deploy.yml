@@ -2,7 +2,7 @@ name: Deploy to Live Channel
 
 on:
   push:
-    branches: [ prod ]
+    branches: [prod]
   # Allows you to run this workflow manually from the Actions tab on GitHub.
   workflow_dispatch:
 
@@ -22,10 +22,16 @@ jobs:
       - name: Install and build
         uses: actions/setup-node@v3
         with:
-          node-version: '16.x'
-          cache: 'npm'
-      - run: npm ci
-      - run: npm run build
+          node-version: "16.x"
+          cache: "npm"
+      - name: Run install
+        uses: borales/actions-yarn@v4
+        with:
+          cmd: install
+      - name: Run Build
+        uses: borales/actions-yarn@v4
+        with:
+          cmd: build
       - name: Deploy on Live Firebase
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
