@@ -32,6 +32,11 @@ jobs:
         uses: borales/actions-yarn@v4
         with:
           cmd: build
+      - name: Change node version
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18.x'
+          cache: 'npm'
       - name: Deploy preview on Firebase
         id: deploy_on_firebase
         uses: FirebaseExtended/action-hosting-deploy@v0
