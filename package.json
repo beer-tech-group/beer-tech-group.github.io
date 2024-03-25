@@ -11,15 +11,14 @@
   },
   "dependencies": {
     "@astrojs/image": "^0.16.0",
-    "@astrojs/mdx": "^0.17.2",
+    "@astrojs/mdx": "0.18.0",
     "@astrojs/react": "^2.1.0",
     "@astrojs/sitemap": "^1.1.0",
     "@astrojs/tailwind": "^3.0.1",
     "@headlessui/react": "^1.7.13",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
-    "astro": "^2.1.0",
-    "astro-compress": "^1.1.35",
+    "astro": "^2.9.1",
     "astro-icon": "^0.8.0",
     "astro-robots-txt": "^0.4.0",
     "astro-seo": "^0.7.1",
@@ -40,5 +39,8 @@
     "prettier-plugin-organize-imports": "^3.2.2",
     "prettier-plugin-tailwindcss": "^0.2.4",
     "sass": "^1.58.3"
+  },
+  "resolutions": {
+    "string-width": "4.2.3"
   }
 }

@@ -1,12 +1,9 @@
-import { defineConfig } from 'astro/config';
+import { defineConfig } from "astro/config";
 
 import mdx from "@astrojs/mdx";
 
 // https://astro.build/config
 import tailwind from "@astrojs/tailwind";
-
-// https://astro.build/config
-import compress from "astro-compress";
 
 // https://astro.build/config
 import robotsTxt from "astro-robots-txt";
@@ -24,16 +21,23 @@ import react from "@astrojs/react";
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://beertechgroup.net',
-  integrations: [mdx(), tailwind(), compress(), robotsTxt(), sitemap({
-    changefreq: 'monthly',
-    priority: 0.7,
-    lastmod: new Date(),
-    i18n: {
-      defaultLocale: 'it',
-      locales: {
-        it: 'it-IT'
-      }
-    }
-  }), image(), react()]
+  site: "https://beertechgroup.net",
+  integrations: [
+    mdx(),
+    tailwind(),
+    robotsTxt(),
+    sitemap({
+      changefreq: "monthly",
+      priority: 0.7,
+      lastmod: new Date(),
+      i18n: {
+        defaultLocale: "it",
+        locales: {
+          it: "it-IT",
+        },
+      },
+    }),
+    image(),
+    react(),
+  ],
 });
