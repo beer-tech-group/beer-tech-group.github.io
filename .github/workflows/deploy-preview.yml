@@ -24,8 +24,19 @@ jobs:
         with:
           node-version: '16.x'
           cache: 'npm'
-      - run: npm ci
-      - run: npm run build
+      - name: Run install
+        uses: borales/actions-yarn@v4
+        with:
+          cmd: install
+      - name: Run Build
+        uses: borales/actions-yarn@v4
+        with:
+          cmd: build
+      - name: Change node version
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18.x'
+          cache: 'npm'
       - name: Deploy preview on Firebase
         id: deploy_on_firebase
         uses: FirebaseExtended/action-hosting-deploy@v0

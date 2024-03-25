@@ -55,8 +55,25 @@ const sponsorCollection = defineCollection({
   }),
 });
 
+const partnerCollection = defineCollection({
+  schema: z.object({
+    name: z.string(),
+    logo: z.object({
+      url: z.string(),
+      aspectRatio: z.custom<`${number}:${number}`>().optional().default("16:9"),
+      widths: z.array(z.number()).optional().default([300, 500]),
+      size: z.custom<`${number}px`>().optional().default("300px"),
+    }),
+    url: z.string(),
+    permalink: z.string(),
+    sortingIndex: z.number(),
+    draft: z.boolean().optional(),
+  }),
+});
+
 export const collections = {
   events: eventCollection,
   contributors: contributorCollection,
   sponsors: sponsorCollection,
+  partners: partnerCollection,
 };
