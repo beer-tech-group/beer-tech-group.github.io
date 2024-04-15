@@ -16,6 +16,7 @@ const eventCollection = defineCollection({
     mentors: z.array(z.string()).optional(),
     sponsors: z.array(z.string()).optional(),
     invitationLink: z.string().optional(),
+    repoUrl: z.string().optional(),
     participants: z.union([z.string(), z.number()]).optional(),
     soldout: z.boolean().optional(),
     tags: z.array(z.string()),
