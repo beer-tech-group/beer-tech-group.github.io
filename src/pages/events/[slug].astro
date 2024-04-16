@@ -3,7 +3,8 @@ import Chip from "@components/display/Chip.astro";
 import ButtonLink from "@components/input/ButtonLink.astro";
 import Tagline from "@components/layouts/Tagline.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
-import { CollectionEntry,getCollection,getEntryBySlug } from "astro:content";
+import Icon from "astro-icon";
+import { CollectionEntry, getCollection, getEntryBySlug } from "astro:content";
 import moment from "moment";
 import "moment/locale/it";
 import ContentSection from "../../components/display/ContentSection.astro";
@@ -108,11 +109,27 @@ const bookingOver = moment(data.date).isBefore(moment().endOf("d"));
           )
         }
       </p>
+      {
+        data.repoUrl && (
+          <a href={data.repoUrl} target="_blank">
+            <Chip variant="contained">
+              <Icon
+                pack="teenyicons"
+                name="github-solid"
+                style={`height: 20px; width: auto; display: inline`}
+                class="hover:fill-gray-500"
+              />
+              Repository
+            </Chip>
+          </a>
+        )
+      }
+
     </div>
 
     <section class="mt-10 flex flex-row flex-wrap">
       <Chip className="mr-2">{data.mode}</Chip>
-      <Chip>{data.type}</Chip>
+      <Chip className="mr-2">{data.type}</Chip>
     </section>
 
     <section class="mt-10 flex flex-row flex-wrap">
